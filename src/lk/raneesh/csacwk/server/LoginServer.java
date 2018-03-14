@@ -20,7 +20,7 @@ public class LoginServer {
     public void addUserToList(User user) {
         //userLoginList.add(user);
         try {
-            String myDataPacket = user.getUsername() + " | " + user.getPassword();
+            String myDataPacket = user.getLoginId() + " | " + user.getPassword();
             Socket clientSocket = new Socket("192.168.50.121", 8290);
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             out.println(myDataPacket);

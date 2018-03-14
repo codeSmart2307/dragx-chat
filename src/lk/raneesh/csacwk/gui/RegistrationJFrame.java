@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import lk.raneesh.csacwk.datastructure.User;
+import lk.raneesh.csacwk.utility.UserValidation;
 
 /**
  *
@@ -257,15 +258,14 @@ public class RegistrationJFrame extends javax.swing.JFrame {
     private void registerRegBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerRegBtnActionPerformed
         User newUser = new User();
         newUser.setNickname(nicknameRegText.getText());
-        newUser.setUsername(loginIdRegText.getText());
-        newUser.setPassword(passwordRegText.getText().toCharArray());
+        newUser.setLoginId(loginIdRegText.getText());
+        char[] password = passwordRegText.getText().toCharArray();        
+        char[] confirmPassword = reenterPasswordRegText.getText().toCharArray();
         
-        char[] confirmPassword;
-        confirmPassword = reenterPasswordRegText.getText().toCharArray();
-        
-        if(!String.valueOf(newUser.getPassword()).equals(String.valueOf(confirmPassword))) {
-            new JOptionPane().showMessageDialog(null, "Password Mismatch!", "Registration Failure", JOptionPane.ERROR_MESSAGE); 
-        }
+        boolean isPasswordValid = UserValidation.validatePassword(password, confirmPassword);        
+        if (isPasswordValid) {
+            newUser.setPassword(password);
+        }   
               
         nicknameRegText.setText("");
         loginIdRegText.setText("");

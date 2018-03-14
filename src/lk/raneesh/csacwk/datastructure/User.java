@@ -1,6 +1,4 @@
 package lk.raneesh.csacwk.datastructure;
-
-import javax.swing.JOptionPane;
 import lk.raneesh.csacwk.utility.UserValidation;
 
 /**
@@ -9,28 +7,26 @@ import lk.raneesh.csacwk.utility.UserValidation;
  */
 public class User {
     
-    private String username;
+    private String loginId;
     private char[] password;   
     private String nickname;
 
     /**
      * @return the username
      */
-    public String getUsername() {
-        return username;
+    public String getLoginId() {
+        return loginId;
     }
 
     /**
      * @param username the username to set
      */
-    public void setUsername(String username) {
-        boolean isUsernameValid = UserValidation.validateUsername(username);
-        if (isUsernameValid) {
-            this.username = username;
-        }
-        else {
-            UserValidation.showError("Login ID is too long! Please keep it below 30 characters");
-        }        
+    public void setLoginId(String loginId) {
+        boolean isLoginIdValid = UserValidation.validateUsername(loginId);
+        if (isLoginIdValid) {
+            this.loginId = loginId;
+            System.out.println("Username saved successfully!");
+        }       
     }
 
     /**
@@ -45,6 +41,7 @@ public class User {
      */
     public void setPassword(char[] password) {
         this.password = password;
+        System.out.println("Password saved successfully!");
     }
     
     /**
@@ -62,9 +59,7 @@ public class User {
         if (isNicknameValid) {
             this.nickname = nickname;
         }
-        else {
-            UserValidation.showError("Nickname is too long! Please keep it below 20 characters");
-        }
+        
     }   
      
 }
