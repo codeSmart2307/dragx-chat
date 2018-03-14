@@ -1,6 +1,7 @@
 package lk.raneesh.csacwk.datastructure;
 
 import javax.swing.JOptionPane;
+import lk.raneesh.csacwk.utility.UserValidation;
 
 /**
  *
@@ -23,13 +24,13 @@ public class User {
      * @param username the username to set
      */
     public void setUsername(String username) {
-        if (username.length() < 30) {
+        boolean isUsernameValid = UserValidation.validateUsername(username);
+        if (isUsernameValid) {
             this.username = username;
         }
         else {
-            showError("Login ID is too long! Please keep it below 30 characters");
-        }
-        
+            UserValidation.showError("Login ID is too long! Please keep it below 30 characters");
+        }        
     }
 
     /**
@@ -57,15 +58,13 @@ public class User {
      * @param nickname the nickname to set
      */
     public void setNickname(String nickname) {
-        if (nickname.length() < 20) {
+        boolean isNicknameValid = UserValidation.validateNickname(nickname);
+        if (isNicknameValid) {
             this.nickname = nickname;
         }
         else {
-            showError("Nickname is too long! Please keep it below 20 characters");
+            UserValidation.showError("Nickname is too long! Please keep it below 20 characters");
         }
-    }
-    
-    public void showError(String error) {
-        new JOptionPane().showMessageDialog(null, error , "Registration Failure", JOptionPane.ERROR_MESSAGE); 
     }   
+     
 }

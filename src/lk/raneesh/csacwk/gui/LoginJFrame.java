@@ -219,7 +219,8 @@ public class LoginJFrame extends javax.swing.JFrame {
     private void loginRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginRegisterBtnActionPerformed
         registration = new RegistrationJFrame();
         registration.setVisible(true);
-        dispose();
+        this.setVisible(false);
+        //dispose();
     }//GEN-LAST:event_loginRegisterBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
