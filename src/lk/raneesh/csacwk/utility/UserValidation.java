@@ -22,7 +22,6 @@ public class UserValidation {
         String dbLoginId = "";
 
         try {
-            // TODO add your handling code here:
             Statement stmt = (Statement) dbConn.createStatement();
 
             String insert_sql = "SELECT username FROM users WHERE username = '" + loginId + "'";

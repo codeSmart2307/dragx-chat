@@ -14,6 +14,8 @@ import lk.raneesh.csacwk.utility.UserValidation;
  * @author Raneesh Gomez
  */
 public class RegistrationJFrame extends javax.swing.JFrame {
+    
+    private LoginJFrame login;
 
     /**
      * Creates new form RegistrationJFrame
@@ -139,6 +141,8 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         chatHeaderLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        regQueryTextLabel = new javax.swing.JLabel();
+        loginRegisterBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -185,6 +189,21 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(153, 153, 0));
         jLabel2.setText("* Enter a Password");
 
+        regQueryTextLabel.setForeground(new java.awt.Color(255, 255, 255));
+        regQueryTextLabel.setText("Already have an account?");
+
+        loginRegisterBtn.setBackground(new java.awt.Color(0, 51, 51));
+        loginRegisterBtn.setFont(new java.awt.Font("Roboto Light", 0, 17)); // NOI18N
+        loginRegisterBtn.setForeground(new java.awt.Color(255, 255, 255));
+        loginRegisterBtn.setText("Login");
+        loginRegisterBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        loginRegisterBtn.setBorderPainted(false);
+        loginRegisterBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginRegisterBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout registerPanelLayout = new javax.swing.GroupLayout(registerPanel);
         registerPanel.setLayout(registerPanelLayout);
         registerPanelLayout.setHorizontalGroup(
@@ -207,8 +226,15 @@ public class RegistrationJFrame extends javax.swing.JFrame {
                 .addComponent(chatHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(118, 118, 118))
             .addGroup(registerPanelLayout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(registerRegBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(registerPanelLayout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(registerRegBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(registerPanelLayout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(regQueryTextLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loginRegisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -233,7 +259,11 @@ public class RegistrationJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addComponent(registerRegBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(regQueryTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginRegisterBtn))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -246,9 +276,7 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(registerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(registerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -266,12 +294,14 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         if (isPasswordValid) {
             newUser.setPassword(password);
         }   
-              
-        nicknameRegText.setText("");
-        loginIdRegText.setText("");
-        passwordRegText.setText("");  
-        reenterPasswordRegText.setText("");
     }//GEN-LAST:event_registerRegBtnActionPerformed
+
+    private void loginRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginRegisterBtnActionPerformed
+        login = new LoginJFrame();
+        login.setVisible(true);
+        this.setVisible(false);
+        //dispose();
+    }//GEN-LAST:event_loginRegisterBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,9 +344,11 @@ public class RegistrationJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField loginIdRegText;
+    private javax.swing.JButton loginRegisterBtn;
     private javax.swing.JTextField nicknameRegText;
     private javax.swing.JPasswordField passwordRegText;
     private javax.swing.JPasswordField reenterPasswordRegText;
+    private javax.swing.JLabel regQueryTextLabel;
     private javax.swing.JPanel registerPanel;
     private javax.swing.JButton registerRegBtn;
     // End of variables declaration//GEN-END:variables
