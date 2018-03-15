@@ -13,13 +13,13 @@ import lk.raneesh.csacwk.databaseconnector.DatabaseConnection;
  *
  * @author Raneesh Gomez
  */
-public class UserValidation {
+public class AuthValidation {
 
     private static Connection dbConn = DatabaseConnection.dbConnection();
 
     public static boolean validateUsername(String loginId) {
         boolean isLoginIdValid = false;
-        String dbLoginId = "";
+        String dbLoginId = "undefined";
 
         try {
             Statement stmt = (Statement) dbConn.createStatement();
@@ -33,10 +33,10 @@ public class UserValidation {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(UserValidation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AuthValidation.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if (dbLoginId.equals("")) {
+        if (dbLoginId.equals("undefined")) {
             if (loginId.length() < 30) {
                 isLoginIdValid = true;
             } else {
@@ -68,7 +68,7 @@ public class UserValidation {
         if (nickname.length() < 20) {
             isNicknameValid = true;
         } else {
-            UserValidation.showError("Nickname is too long! Please keep it below 20 characters");
+            AuthValidation.showError("Nickname is too long! Please keep it below 20 characters");
         }
         return isNicknameValid;
     }

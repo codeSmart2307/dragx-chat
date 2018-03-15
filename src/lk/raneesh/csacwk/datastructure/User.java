@@ -1,5 +1,5 @@
 package lk.raneesh.csacwk.datastructure;
-import lk.raneesh.csacwk.utility.UserValidation;
+import lk.raneesh.csacwk.utility.AuthValidation;
 
 /**
  *
@@ -22,7 +22,7 @@ public class User {
      * @param username the username to set
      */
     public void setLoginId(String loginId) {
-        boolean isLoginIdValid = UserValidation.validateUsername(loginId);
+        boolean isLoginIdValid = AuthValidation.validateUsername(loginId);
         if (isLoginIdValid) {
             this.loginId = loginId;
             System.out.println("Username saved successfully!");
@@ -55,7 +55,7 @@ public class User {
      * @param nickname the nickname to set
      */
     public void setNickname(String nickname) {
-        boolean isNicknameValid = UserValidation.validateNickname(nickname);
+        boolean isNicknameValid = AuthValidation.validateNickname(nickname);
         if (isNicknameValid) {
             this.nickname = nickname;
         }

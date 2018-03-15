@@ -7,7 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import lk.raneesh.csacwk.datastructure.User;
-import lk.raneesh.csacwk.utility.UserValidation;
+import lk.raneesh.csacwk.utility.AuthValidation;
 
 /**
  *
@@ -290,7 +290,7 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         char[] password = passwordRegText.getText().toCharArray();        
         char[] confirmPassword = reenterPasswordRegText.getText().toCharArray();
         
-        boolean isPasswordValid = UserValidation.validatePassword(password, confirmPassword);        
+        boolean isPasswordValid = AuthValidation.validatePassword(password, confirmPassword);        
         if (isPasswordValid) {
             newUser.setPassword(password);
         }   
