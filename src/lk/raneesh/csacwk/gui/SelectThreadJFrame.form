@@ -49,7 +49,7 @@
                           <EmptySpace min="-2" pref="274" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" pref="263" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="logOutButton" min="-2" pref="154" max="-2" attributes="0"/>
+                          <Component id="logOutButton" min="-2" pref="133" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
@@ -63,7 +63,7 @@
                           <Component id="addThreadButton" min="-2" pref="154" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="115" max="32767" attributes="0"/>
+                  <EmptySpace pref="117" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

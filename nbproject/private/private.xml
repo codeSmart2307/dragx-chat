@@ -2,6 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/gui/SelectThreadJFrame.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/datastructure/User.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/utility/ChatFunctionValidation.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/gui/RegistrationJFrame.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/databaseconnector/DatabaseConnection.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/gui/AddThreadJFrame.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/testsocket/ChatGUI.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/datastructure/ThreadList.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/testsocket/ChatServer.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/gui/customlist/ThreadPanel.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/gui/LoginJFrame.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/gui/EditMessagesJFrame.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/utility/AuthValidation.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/gui/customlist/MessagePanel.java</file>
+            <file>file:/C:/Users/Raneesh%20Gomez/Google%20Drive/IIT/Level%2005/Client%20Server%20Architecture/Coursework/CSACWK_w1626698/src/lk/raneesh/csacwk/datastructure/MessageList.java</file>
+        </group>
     </open-files>
 </project-private>

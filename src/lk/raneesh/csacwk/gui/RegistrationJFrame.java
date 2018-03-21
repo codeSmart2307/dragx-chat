@@ -6,8 +6,7 @@ import java.awt.event.FocusListener;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-import lk.raneesh.csacwk.datastructure.User;
-import lk.raneesh.csacwk.utility.AuthValidation;
+import lk.raneesh.csacwk.controllers.UserController;
 
 /**
  *
@@ -284,16 +283,18 @@ public class RegistrationJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerRegBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerRegBtnActionPerformed
-        User newUser = new User();
-        newUser.setNickname(nicknameRegText.getText());
-        newUser.setLoginId(loginIdRegText.getText());
+        String nickname = nicknameRegText.getText();
+        String username = loginIdRegText.getText();
         char[] password = passwordRegText.getText().toCharArray();        
         char[] confirmPassword = reenterPasswordRegText.getText().toCharArray();
         
-        boolean isPasswordValid = AuthValidation.validatePassword(password, confirmPassword);        
-        if (isPasswordValid) {
-            newUser.setPassword(password);
-        }   
+        UserController.registerUser(nickname, username, password, confirmPassword);
+        
+//        boolean isRegistrationValid = UserServiceClient.register(nickname, username, String.valueOf(password), String.valueOf(confirmPassword));
+//        
+//        if (isRegistrationValid) {
+//            System.out.println("Registration Successful");
+//        }
     }//GEN-LAST:event_registerRegBtnActionPerformed
 
     private void loginRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginRegisterBtnActionPerformed

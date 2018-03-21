@@ -16,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import lk.raneesh.csacwk.datastructure.MessageList;
 import lk.raneesh.csacwk.gui.customlist.MessagePanel;
-import lk.raneesh.csacwk.utility.ChatFunctionValidation;
 
 /**
  *
@@ -194,11 +193,11 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
 
     private void messageAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messageAddButtonActionPerformed
         String currMessage = messageTextField.getText();
-        boolean isFieldEmpty = ChatFunctionValidation.validateEmptyString(currMessage);
-        
-        if (!isFieldEmpty) {
-           messageListModel.addElement(new MessageList(currMessage, "Raneesh", String.valueOf(new Date())));         
-        }
+//        boolean isFieldEmpty = ChatFunctionValidation.validateEmptyString(currMessage);
+//        
+//        if (!isFieldEmpty) {
+//           messageListModel.addElement(new MessageList(currMessage, "Raneesh", String.valueOf(new Date())));         
+//        }
         
         messageTextField.setForeground(Color.GRAY);
         messageTextField.setText("");

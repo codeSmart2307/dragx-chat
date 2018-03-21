@@ -3,19 +3,9 @@ package lk.raneesh.csacwk.gui;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.sql.Connection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import lk.raneesh.csacwk.databaseconnector.DatabaseConnection;
 import lk.raneesh.csacwk.datastructure.User;
-import lk.raneesh.csacwk.server.LoginServer;
 
 /**
  *
@@ -24,9 +14,7 @@ import lk.raneesh.csacwk.server.LoginServer;
 public class LoginJFrame extends javax.swing.JFrame {
     
     RegistrationJFrame registration;
-    LoginJFrame login;
-    
-    LoginServer loginServer = new LoginServer();
+    LoginJFrame login;    
 
     /**
      * Creates new form LoginJFrame
@@ -226,9 +214,6 @@ public class LoginJFrame extends javax.swing.JFrame {
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         loginIdText.setText("");
         loginPasswordText.setText("");
-        
-        Connection conn = DatabaseConnection.dbConnection();
-
     }//GEN-LAST:event_loginBtnActionPerformed
 
     /**

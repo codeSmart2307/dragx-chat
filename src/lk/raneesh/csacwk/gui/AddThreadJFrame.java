@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.BorderFactory;
-import lk.raneesh.csacwk.utility.ChatFunctionValidation;
 
 /**
  *
@@ -170,13 +169,13 @@ public class AddThreadJFrame extends javax.swing.JFrame {
 
     private void createThreadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createThreadButtonActionPerformed
         String threadTitle = newThreadTitleText.getText();
-        boolean isFieldEmpty = ChatFunctionValidation.validateEmptyString(threadTitle);
-        
-        if (!isFieldEmpty) {          
-           selectThread = new SelectThreadJFrame();
-           selectThread.setVisible(true);
-           this.setVisible(false); 
-        }
+//        boolean isFieldEmpty = ChatFunctionValidation.validateEmptyString(threadTitle);
+//        
+//        if (!isFieldEmpty) {          
+//           selectThread = new SelectThreadJFrame();
+//           selectThread.setVisible(true);
+//           this.setVisible(false); 
+//        }
         
         newThreadTitleText.setForeground(Color.GRAY);
         newThreadTitleText.setText("Enter Thread Title Here...");       

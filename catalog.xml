@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/CSACWK_w1626698_WebServices/ChatService?wsdl" uri="xml-resources/web-service-references/ChatService/wsdl/localhost_8080/CSACWK_w1626698_WebServices/ChatService.wsdl"/>
+    <system systemId="http://localhost:8080/CSACWK_w1626698_WebServices/ChatService?xsd=1" uri="xml-resources/web-service-references/ChatService/wsdl/localhost_8080/CSACWK_w1626698_WebServices/ChatService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/CSACWK_w1626698_WebServices/UserService?wsdl" uri="xml-resources/web-service-references/UserService/wsdl/localhost_8080/CSACWK_w1626698_WebServices/UserService.wsdl"/>
+    <system systemId="http://localhost:8080/CSACWK_w1626698_WebServices/UserService?xsd=1" uri="xml-resources/web-service-references/UserService/wsdl/localhost_8080/CSACWK_w1626698_WebServices/UserService.xsd_1.xsd"/>
+</catalog>

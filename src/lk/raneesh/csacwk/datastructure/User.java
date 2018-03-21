@@ -1,14 +1,13 @@
 package lk.raneesh.csacwk.datastructure;
-import lk.raneesh.csacwk.utility.AuthValidation;
 
 /**
  *
  * @author 2016087
  */
 public class User {
-    
+
     private String loginId;
-    private char[] password;   
+    private char[] password;
     private String nickname;
 
     /**
@@ -22,11 +21,8 @@ public class User {
      * @param username the username to set
      */
     public void setLoginId(String loginId) {
-        boolean isLoginIdValid = AuthValidation.validateUsername(loginId);
-        if (isLoginIdValid) {
-            this.loginId = loginId;
-            System.out.println("Username saved successfully!");
-        }       
+        this.loginId = loginId;
+
     }
 
     /**
@@ -40,10 +36,9 @@ public class User {
      * @param password the password to set
      */
     public void setPassword(char[] password) {
-        this.password = password;
-        System.out.println("Password saved successfully!");
+        this.password = password;        
     }
-    
+
     /**
      * @return the nickname
      */
@@ -55,11 +50,7 @@ public class User {
      * @param nickname the nickname to set
      */
     public void setNickname(String nickname) {
-        boolean isNicknameValid = AuthValidation.validateNickname(nickname);
-        if (isNicknameValid) {
-            this.nickname = nickname;
-        }
-        
-    }   
-     
+        this.nickname = nickname;
+
+    }
 }
