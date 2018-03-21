@@ -53,7 +53,8 @@ public class UserController {
             isLoginSuccessful = true;
         }
         else {
-            showError("Your username/ password is incorrect! Please try again.");
+            //showError("Your username/ password is incorrect! Please try again.");
+            showError(loginStatus);
         }
         
         return isLoginSuccessful;
