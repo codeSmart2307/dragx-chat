@@ -14,27 +14,49 @@ import lk.raneesh.csacwk.webserviceclient.UserServiceClient;
  * @author Raneesh Gomez
  */
 public class UserController {
- 
-    public static void registerUser(String nickname, String username, char[] password, char[] confirmPassword) {
+    
+    private static User currUser;
+    
+    public static boolean registerUser(String nickname, String username, char[] password, char[] confirmPassword) {
+        boolean isRegistrationSuccessful = false;
+        
         String passwordString = String.valueOf(password);
         String confirmPasswordString = String.valueOf(confirmPassword);
         
-        boolean isRegistrationValid = UserServiceClient.register(nickname, username, passwordString, confirmPasswordString);
+        String registrationStatus = UserServiceClient.register(nickname, username, passwordString, confirmPasswordString);
         
-        if (isRegistrationValid) {
-            User newUser = new User();
-            newUser.setNickname(nickname);
-            newUser.setLoginId(username);
-            newUser.setPassword(password);
+        if (registrationStatus.equals("success")) {
+            currUser = new User();
+            currUser.setNickname(nickname);
+            currUser.setLoginId(username);
+            currUser.setPassword(password);
            
-            showSuccess("You have been successfully registered!");
+            showSuccess("You have been successfully registered!");   
+            
+            isRegistrationSuccessful = true;
         }
         else {
-            showError("Registration failed!");
+            showError(registrationStatus);
         }
+        
+        return isRegistrationSuccessful;
     }
     
-    public static void loginUser(String username, char[] password) {
+    public static boolean loginUser(String username, char[] password) {
+        boolean isLoginSuccessful = false;        
+        String passwordString = String.valueOf(password);        
+        String loginStatus = UserServiceClient.login(username, passwordString);
+        
+        if (loginStatus.equals("success")) {            
+            showSuccess("Welcome, " + username);
+            
+            isLoginSuccessful = true;
+        }
+        else {
+            showError("Your username/ password is incorrect! Please try again.");
+        }
+        
+        return isLoginSuccessful;
         
     }
     

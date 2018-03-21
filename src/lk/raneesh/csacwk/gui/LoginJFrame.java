@@ -3,9 +3,8 @@ package lk.raneesh.csacwk.gui;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.sql.Connection;
 import javax.swing.BorderFactory;
-import lk.raneesh.csacwk.datastructure.User;
+import lk.raneesh.csacwk.controllers.UserController;
 
 /**
  *
@@ -14,7 +13,7 @@ import lk.raneesh.csacwk.datastructure.User;
 public class LoginJFrame extends javax.swing.JFrame {
     
     RegistrationJFrame registration;
-    LoginJFrame login;    
+    SelectThreadJFrame selectThreads;
 
     /**
      * Creates new form LoginJFrame
@@ -212,8 +211,19 @@ public class LoginJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_loginRegisterBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        String username = loginIdText.getText();
+        char[] password = loginPasswordText.getText().toCharArray(); 
+        
+        boolean isLoginSuccessful = UserController.loginUser(username, password);
+        
         loginIdText.setText("");
         loginPasswordText.setText("");
+        
+        if (isLoginSuccessful) {
+           selectThreads = new SelectThreadJFrame();
+           selectThreads.setVisible(true);
+           this.setVisible(false); 
+        }        
     }//GEN-LAST:event_loginBtnActionPerformed
 
     /**

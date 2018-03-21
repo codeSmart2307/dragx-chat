@@ -288,13 +288,18 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         char[] password = passwordRegText.getText().toCharArray();        
         char[] confirmPassword = reenterPasswordRegText.getText().toCharArray();
         
-        UserController.registerUser(nickname, username, password, confirmPassword);
+        boolean isRegistrationSuccessful = UserController.registerUser(nickname, username, password, confirmPassword);
         
-//        boolean isRegistrationValid = UserServiceClient.register(nickname, username, String.valueOf(password), String.valueOf(confirmPassword));
-//        
-//        if (isRegistrationValid) {
-//            System.out.println("Registration Successful");
-//        }
+        nicknameRegText.setText("");
+        loginIdRegText.setText("");
+        passwordRegText.setText("");
+        reenterPasswordRegText.setText("");
+        
+        if (isRegistrationSuccessful) {
+            login = new LoginJFrame();
+            login.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_registerRegBtnActionPerformed
 
     private void loginRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginRegisterBtnActionPerformed
