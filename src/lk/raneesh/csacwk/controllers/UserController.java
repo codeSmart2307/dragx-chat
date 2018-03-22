@@ -25,14 +25,8 @@ public class UserController {
         
         String registrationStatus = UserServiceClient.register(nickname, username, passwordString, confirmPasswordString);
         
-        if (registrationStatus.equals("success")) {
-            currUser = new User();
-            currUser.setNickname(nickname);
-            currUser.setLoginId(username);
-            currUser.setPassword(password);
-           
-            showSuccess("You have been successfully registered!");   
-            
+        if (registrationStatus.equals("success")) {          
+            showSuccess("You have been successfully registered!");           
             isRegistrationSuccessful = true;
         }
         else {
@@ -46,15 +40,19 @@ public class UserController {
         boolean isLoginSuccessful = false;        
         String passwordString = String.valueOf(password);        
         String loginStatus = UserServiceClient.login(username, passwordString);
-        
-        if (loginStatus.equals("success")) {            
-            showSuccess("Welcome, " + username);
+        String[] statusArr = loginStatus.split("&");
+        if (statusArr[0].equals("success")) {  
+            currUser = new User();
+            currUser.setLoginId(username);
+            currUser.setPassword(password);
+            currUser.setNickname(statusArr[1]);
+            User.setCurrUser(currUser);
+            showSuccess("Welcome, " + currUser.getNickname());
             
             isLoginSuccessful = true;
         }
-        else {
-            //showError("Your username/ password is incorrect! Please try again.");
-            showError(loginStatus);
+        else {            
+            showError(statusArr[0]);
         }
         
         return isLoginSuccessful;

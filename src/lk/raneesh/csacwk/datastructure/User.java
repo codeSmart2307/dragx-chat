@@ -6,9 +6,12 @@ package lk.raneesh.csacwk.datastructure;
  */
 public class User {
 
+    private static User currUser;
+
+    
     private String loginId;
     private char[] password;
-    private String nickname;
+    private String nickname;   
 
     /**
      * @return the username
@@ -52,5 +55,19 @@ public class User {
     public void setNickname(String nickname) {
         this.nickname = nickname;
 
+    }
+
+    /**
+     * @return the currUser
+     */
+    public static User getCurrUser() {
+        return currUser;
+    }
+
+    /**
+     * @param aCurrUser the currUser to set
+     */
+    public static void setCurrUser(User aCurrUser) {
+        currUser = aCurrUser;
     }
 }
