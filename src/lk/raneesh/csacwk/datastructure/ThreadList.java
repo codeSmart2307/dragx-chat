@@ -62,10 +62,4 @@ public class ThreadList {
     public void setThreadDate(String threadDate) {
         this.threadDate = threadDate;
     }
-
-    
-
-    
-    
-    
 }

@@ -9,7 +9,12 @@ package lk.raneesh.csacwk.gui;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import lk.raneesh.csacwk.controllers.ChatController;
+import lk.raneesh.csacwk.datastructure.ThreadList;
 
 /**
  *
@@ -169,16 +174,15 @@ public class AddThreadJFrame extends javax.swing.JFrame {
 
     private void createThreadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createThreadButtonActionPerformed
         String threadTitle = newThreadTitleText.getText();
-//        boolean isFieldEmpty = ChatFunctionValidation.validateEmptyString(threadTitle);
-//        
-//        if (!isFieldEmpty) {          
-//           selectThread = new SelectThreadJFrame();
-//           selectThread.setVisible(true);
-//           this.setVisible(false); 
-//        }
+        
+        ArrayList<String> newThreadList = ChatController.createNewThread(threadTitle);       
+        
+        SelectThreadJFrame.threadListModel.addElement(new ThreadList(newThreadList.get(0), newThreadList.get(1), newThreadList.get(2)));   
         
         newThreadTitleText.setForeground(Color.GRAY);
-        newThreadTitleText.setText("Enter Thread Title Here...");       
+        newThreadTitleText.setText("Enter Thread Title Here..."); 
+        
+        this.setVisible(false);
     }//GEN-LAST:event_createThreadButtonActionPerformed
 
     private void newThreadTitleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newThreadTitleTextActionPerformed

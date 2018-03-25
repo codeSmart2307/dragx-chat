@@ -8,7 +8,6 @@ package lk.raneesh.csacwk.gui.customlist;
 import java.awt.Component;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import lk.raneesh.csacwk.datastructure.MessageList;
 import lk.raneesh.csacwk.datastructure.ThreadList;
 
 /**

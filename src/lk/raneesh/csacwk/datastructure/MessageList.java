@@ -5,34 +5,35 @@
  */
 package lk.raneesh.csacwk.datastructure;
 
+
 /**
  *
  * @author Raneesh Gomez
  */
 public class MessageList {
     
-    private String messageTitle;
+    private String messageBody;
     private String messageAuthor;
     private String messageDate;
 
-    public MessageList(String messageTitle, String messageAuthor, String messageDate) {
-        this.messageTitle = messageTitle;
+    public MessageList(String messageBody, String messageAuthor, String messageDate) {
+        this.messageBody = messageBody;
         this.messageAuthor = messageAuthor;
         this.messageDate = messageDate;
     }   
 
     /**
-     * @return the messageTitle
+     * @return the messageBody
      */
-    public String getMessageTitle() {
-        return messageTitle;
+    public String getMessageBody() {
+        return messageBody;
     }
 
     /**
-     * @param messageTitle the messageTitle to set
+     * @param messageBody the messageBody to set
      */
-    public void setMessageTitle(String messageTitle) {
-        this.messageTitle = messageTitle;
+    public void setMessageBody(String messageBody) {
+        this.messageBody = messageBody;
     }
 
     /**
@@ -62,7 +63,5 @@ public class MessageList {
     public void setMessageDate(String messageDate) {
         this.messageDate = messageDate;
     }
-    
-    
     
 }

@@ -31,7 +31,24 @@
     </target>
     <target name="wsimport-client-clean-UserService" depends="-init-project">
         <delete dir="${build.generated.dir}/jax-wsCache/UserService"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/lk/raneesh/csacwk/userservice"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/lk/raneesh/csacwk/webservice/userservice"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-UserService"/>
+    <target name="wsimport-client-ChatService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/ChatService"/>
+        <property name="wsdl-ChatService" location="xml-resources/web-service-references/ChatService/wsdl/localhost_8080/CSACWK_w1626698_WebServices/ChatService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ChatService" destdir="${build.generated.dir}/jax-wsCache/ChatService" wsdl="${wsdl-ChatService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/CSACWK_w1626698_WebServices/ChatService?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-ChatService}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/ChatService"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/ChatService">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-ChatService" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/ChatService"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/lk/raneesh/csacwk/webservice/chatservice"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-UserService, wsimport-client-ChatService"/>
 </project>

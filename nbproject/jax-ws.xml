@@ -5,7 +5,7 @@
     <client name="UserService">
       <wsdl-url>http://localhost:8080/CSACWK_w1626698_WebServices/UserService?wsdl</wsdl-url>
       <local-wsdl-file>localhost_8080/CSACWK_w1626698_WebServices/UserService.wsdl</local-wsdl-file>
-      <package-name>lk.raneesh.csacwk.userservice</package-name>
+      <package-name>lk.raneesh.csacwk.webservice.userservice</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -23,6 +23,38 @@
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
           <wsimport-option-value>http://localhost:8080/CSACWK_w1626698_WebServices/UserService?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="ChatService">
+      <wsdl-url>http://localhost:8080/CSACWK_w1626698_WebServices/ChatService?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/CSACWK_w1626698_WebServices/ChatService.wsdl</local-wsdl-file>
+      <package-name>lk.raneesh.csacwk.webservice.chatservice</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:8080/CSACWK_w1626698_WebServices/ChatService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

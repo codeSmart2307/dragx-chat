@@ -6,9 +6,13 @@
 
 package lk.raneesh.csacwk.gui;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import lk.raneesh.csacwk.controllers.ChatController;
 import lk.raneesh.csacwk.datastructure.ThreadList;
+import lk.raneesh.csacwk.datastructure.User;
 import lk.raneesh.csacwk.gui.customlist.ThreadPanel;
 
 /**
@@ -20,7 +24,7 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
     private AddThreadJFrame addThread;
     private LoginJFrame login;   
     
-    private static DefaultListModel<ThreadList> threadListModel = new DefaultListModel<>();
+    public static DefaultListModel<ThreadList> threadListModel = new DefaultListModel<>();
 
     /**
      * Creates new form LoginJFrame
@@ -151,13 +155,14 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addThreadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addThreadButtonActionPerformed
-        threadListModel.addElement(new ThreadList("Print database acknowledgement here", "Raneesh", String.valueOf(new Date())));   
         addThread = new AddThreadJFrame();
-        addThread.setVisible(true);
-        this.setVisible(false);
+        addThread.setVisible(true); 
     }//GEN-LAST:event_addThreadButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
+        User.setCurrUser(null); //Sets current signed in user to null
+        
+        //Closes Select Threads window and opens Login Window
         login = new LoginJFrame();
         login.setVisible(true);
         this.setVisible(false);

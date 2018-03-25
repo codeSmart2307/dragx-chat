@@ -5,10 +5,18 @@
  */
 package lk.raneesh.csacwk.webserviceclient;
 
+import lk.raneesh.csacwk.webservice.chatservice.ChatThread;
+
 /**
  *
  * @author Raneesh Gomez
  */
-public class ChatServiceClient {
+public class ChatServiceClient {   
+
+    public static ChatThread addThread(java.lang.String threadTitle, java.lang.String threadCreator) {
+        lk.raneesh.csacwk.webservice.chatservice.ChatService_Service service = new lk.raneesh.csacwk.webservice.chatservice.ChatService_Service();
+        lk.raneesh.csacwk.webservice.chatservice.ChatService port = service.getChatServicePort();
+        return port.addThread(threadTitle, threadCreator);
+    }     
     
 }
