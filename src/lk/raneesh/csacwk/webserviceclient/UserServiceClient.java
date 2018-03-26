@@ -21,8 +21,5 @@ public class UserServiceClient {
         lk.raneesh.csacwk.webservice.userservice.UserService_Service service = new lk.raneesh.csacwk.webservice.userservice.UserService_Service();
         lk.raneesh.csacwk.webservice.userservice.UserService port = service.getUserServicePort();
         return port.register(nickname, username, password, confirmPassword);
-    }
-
-       
-    
+    }   
 }

@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package lk.raneesh.csacwk.gui;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.awt.event.MouseEvent;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import lk.raneesh.csacwk.controllers.ChatController;
 import lk.raneesh.csacwk.datastructure.ThreadList;
 import lk.raneesh.csacwk.datastructure.User;
@@ -20,10 +18,10 @@ import lk.raneesh.csacwk.gui.customlist.ThreadPanel;
  * @author Gab
  */
 public class SelectThreadJFrame extends javax.swing.JFrame {
-    
+
     private AddThreadJFrame addThread;
-    private LoginJFrame login;   
-    
+    private LoginJFrame login;
+
     public static DefaultListModel<ThreadList> threadListModel = new DefaultListModel<>();
 
     /**
@@ -33,13 +31,17 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
         super("DRAGx Chat | Select Thread");
         initComponents();
         generateMessageList();
+        retrieveAllThreads();
     }
-    
-    public void generateMessageList() {          
+
+    public void generateMessageList() {
         threadJList.setModel(threadListModel);
         threadJList.setCellRenderer(new ThreadPanel());
     }
     
+    public void retrieveAllThreads() {
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,6 +101,11 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
         chatHeaderLabel.setToolTipText("");
         chatHeaderLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        threadJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                threadJListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(threadJList);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -156,17 +163,34 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
 
     private void addThreadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addThreadButtonActionPerformed
         addThread = new AddThreadJFrame();
-        addThread.setVisible(true); 
+        addThread.setVisible(true);
     }//GEN-LAST:event_addThreadButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         User.setCurrUser(null); //Sets current signed in user to null
-        
+
         //Closes Select Threads window and opens Login Window
         login = new LoginJFrame();
         login.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_logOutButtonActionPerformed
+
+    private void threadJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_threadJListMouseClicked
+        int index;
+        JList threadJList = (JList) evt.getSource();
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            if (evt.getClickCount() == 2) {
+                //Detecting double click event
+                index = threadJList.locationToIndex(evt.getPoint());
+                System.out.println("Thread " + index + " clicked!");
+            } else if (evt.getClickCount() == 3) {
+                //Detecting triple click event
+                index = threadJList.locationToIndex(evt.getPoint());
+                System.out.println("Thread " + index + " clicked!");
+            }
+        }
+        
+    }//GEN-LAST:event_threadJListMouseClicked
 
     /**
      * @param args the command line arguments

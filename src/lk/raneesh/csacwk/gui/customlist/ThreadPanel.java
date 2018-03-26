@@ -40,6 +40,7 @@ public class ThreadPanel extends javax.swing.JPanel implements ListCellRenderer<
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        threadTitleListLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         threadTitleListLabel.setText("Thread Title");
 
         threadCreatorListLabel.setText("Thread Creator");

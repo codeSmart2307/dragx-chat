@@ -40,6 +40,7 @@ public class MessagePanel extends javax.swing.JPanel implements ListCellRenderer
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        messageTitleListLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         messageTitleListLabel.setText("Message Title");
 
         messageAuthorListLabel.setText("Message Author");
