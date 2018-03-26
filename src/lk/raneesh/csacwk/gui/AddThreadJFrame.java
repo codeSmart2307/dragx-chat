@@ -177,7 +177,7 @@ public class AddThreadJFrame extends javax.swing.JFrame {
         
         ArrayList<String> newThreadList = ChatController.createNewThread(threadTitle);       
         
-        SelectThreadJFrame.threadListModel.addElement(new ThreadList(newThreadList.get(0), newThreadList.get(1), newThreadList.get(2)));   
+        SelectThreadJFrame.threadListModel.add(0, new ThreadList(newThreadList.get(0), newThreadList.get(1), newThreadList.get(2)));   
         
         newThreadTitleText.setForeground(Color.GRAY);
         newThreadTitleText.setText("Enter Thread Title Here..."); 

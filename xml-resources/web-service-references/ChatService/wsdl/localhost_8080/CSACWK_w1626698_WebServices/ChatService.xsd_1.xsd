@@ -4,6 +4,28 @@
 
 <xs:element name="addThreadResponse" type="tns:addThreadResponse"/>
 
+<xs:element name="retrieveAllThreads" type="tns:retrieveAllThreads"/>
+
+<xs:element name="retrieveAllThreadsResponse" type="tns:retrieveAllThreadsResponse"/>
+
+<xs:complexType name="retrieveAllThreads">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="retrieveAllThreadsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:ChatThread" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ChatThread">
+<xs:sequence>
+<xs:element name="threadTitle" type="xs:string" minOccurs="0"/>
+<xs:element name="threadCreator" type="xs:string" minOccurs="0"/>
+<xs:element name="threadDateTime" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="addThread">
 <xs:sequence>
 <xs:element name="threadTitle" type="xs:string" minOccurs="0"/>
@@ -14,14 +36,6 @@
 <xs:complexType name="addThreadResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:ChatThread" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="ChatThread">
-<xs:sequence>
-<xs:element name="threadTitle" type="xs:string" minOccurs="0"/>
-<xs:element name="threadCreator" type="xs:string" minOccurs="0"/>
-<xs:element name="threadDateTime" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

@@ -6,7 +6,10 @@
 package lk.raneesh.csacwk.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 import static lk.raneesh.csacwk.controllers.UserController.showError;
+import lk.raneesh.csacwk.datastructure.MessageList;
+import lk.raneesh.csacwk.datastructure.ThreadList;
 import lk.raneesh.csacwk.datastructure.User;
 import lk.raneesh.csacwk.utility.ChatValidation;
 import lk.raneesh.csacwk.webservice.chatservice.ChatThread;
@@ -44,12 +47,26 @@ public class ChatController {
         return newThreadList;
     }
 
-    public static ArrayList<String> retrieveAllThreads() {
-        ArrayList<String> currentThreadsList = new ArrayList<>();
+    public static ArrayList<ThreadList> retrieveAllThreads() {
+        ArrayList<ThreadList> currentThreadsList = new ArrayList<>();
         
-        ArrayList<ChatThread> retrievedThreads = ChatServiceClient.retrieveAllThreads();
+        List<ChatThread> retrievedThreads = ChatServiceClient.retrieveAllThreads();
         
+        if (retrievedThreads != null) {
+            for (int i = 0; i < retrievedThreads.size(); i++) {
+                currentThreadsList.add(new ThreadList(retrievedThreads.get(i).getThreadTitle(), retrievedThreads.get(i).getThreadCreator(), retrievedThreads.get(i).getThreadDateTime()));
+            }
+        }
+               
         return currentThreadsList;
+    }
+    
+    public static ArrayList<MessageList> retrieveThreadSpecificMessages() {
+        ArrayList<MessageList> currentMessagesList = new ArrayList<>();
+        
+        
+        
+        return currentMessagesList;
     }
 
 }

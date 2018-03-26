@@ -6,6 +6,7 @@
 package lk.raneesh.csacwk.gui;
 
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import lk.raneesh.csacwk.controllers.ChatController;
@@ -40,7 +41,10 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
     }
     
     public void retrieveAllThreads() {
-        
+        ArrayList<ThreadList> currentThreads = ChatController.retrieveAllThreads();
+        for (int i = 0; i < currentThreads.size(); i++) {
+            threadListModel.addElement(new ThreadList(currentThreads.get(i).getThreadTitle(), currentThreads.get(i).getThreadCreator(), currentThreads.get(i).getThreadDate()));
+        }
     }
 
     /**

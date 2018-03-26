@@ -17,10 +17,20 @@
 <message name="addThreadResponse">
 <part name="parameters" element="tns:addThreadResponse"/>
 </message>
+<message name="retrieveAllThreads">
+<part name="parameters" element="tns:retrieveAllThreads"/>
+</message>
+<message name="retrieveAllThreadsResponse">
+<part name="parameters" element="tns:retrieveAllThreadsResponse"/>
+</message>
 <portType name="ChatService">
 <operation name="addThread">
 <input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadRequest" message="tns:addThread"/>
 <output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadResponse" message="tns:addThreadResponse"/>
+</operation>
+<operation name="retrieveAllThreads">
+<input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllThreadsRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllThreadsRequest" message="tns:retrieveAllThreads"/>
+<output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllThreadsResponse" message="tns:retrieveAllThreadsResponse"/>
 </operation>
 </portType>
 <binding name="ChatServicePortBinding" type="tns:ChatService">
@@ -29,6 +39,15 @@
 <wsp:PolicyReference URI="#ChatServicePortBindingPolicy"/>
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="addThread">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="retrieveAllThreads">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

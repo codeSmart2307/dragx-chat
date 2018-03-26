@@ -17,6 +17,11 @@ public class ChatServiceClient {
         lk.raneesh.csacwk.webservice.chatservice.ChatService_Service service = new lk.raneesh.csacwk.webservice.chatservice.ChatService_Service();
         lk.raneesh.csacwk.webservice.chatservice.ChatService port = service.getChatServicePort();
         return port.addThread(threadTitle, threadCreator);
-    }     
-    
+    }
+
+    public static java.util.List<lk.raneesh.csacwk.webservice.chatservice.ChatThread> retrieveAllThreads() {
+        lk.raneesh.csacwk.webservice.chatservice.ChatService_Service service = new lk.raneesh.csacwk.webservice.chatservice.ChatService_Service();
+        lk.raneesh.csacwk.webservice.chatservice.ChatService port = service.getChatServicePort();
+        return port.retrieveAllThreads();
+    }    
 }
