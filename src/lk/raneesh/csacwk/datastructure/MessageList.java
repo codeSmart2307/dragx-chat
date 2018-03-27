@@ -10,17 +10,36 @@ package lk.raneesh.csacwk.datastructure;
  *
  * @author Raneesh Gomez
  */
-public class MessageList {
+public class MessageList {  
     
+    private int threadId;
+    private static String threadTitle;
+    private int messageId;
     private String messageBody;
     private String messageAuthor;
     private String messageDate;
 
-    public MessageList(String messageBody, String messageAuthor, String messageDate) {
+    public MessageList(int threadId, int messageId, String messageBody, String messageAuthor, String messageDate) {
+        this.threadId = threadId;        
+        this.messageId = messageId;
         this.messageBody = messageBody;
         this.messageAuthor = messageAuthor;
         this.messageDate = messageDate;
-    }   
+    }  
+    
+    /**
+     * @return the threadTitle
+     */
+    public static String getThreadTitle() {
+        return threadTitle;
+    }
+
+    /**
+     * @param aThreadTitle the threadTitle to set
+     */
+    public static void setThreadTitle(String aThreadTitle) {
+        threadTitle = aThreadTitle;
+    }
 
     /**
      * @return the messageBody
@@ -62,6 +81,34 @@ public class MessageList {
      */
     public void setMessageDate(String messageDate) {
         this.messageDate = messageDate;
+    }
+
+    /**
+     * @return the messageId
+     */
+    public int getMessageId() {
+        return messageId;
+    }
+
+    /**
+     * @param messageId the messageId to set
+     */
+    public void setMessageId(int messageId) {
+        this.messageId = messageId;
+    }
+
+    /**
+     * @return the threadId
+     */
+    public int getThreadId() {
+        return threadId;
+    }
+
+    /**
+     * @param threadId the threadId to set
+     */
+    public void setThreadId(int threadId) {
+        this.threadId = threadId;
     }
     
 }

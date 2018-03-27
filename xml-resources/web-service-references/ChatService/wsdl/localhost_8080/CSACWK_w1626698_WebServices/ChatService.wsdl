@@ -23,6 +23,12 @@
 <message name="retrieveAllThreadsResponse">
 <part name="parameters" element="tns:retrieveAllThreadsResponse"/>
 </message>
+<message name="retrieveAllMessages">
+<part name="parameters" element="tns:retrieveAllMessages"/>
+</message>
+<message name="retrieveAllMessagesResponse">
+<part name="parameters" element="tns:retrieveAllMessagesResponse"/>
+</message>
 <portType name="ChatService">
 <operation name="addThread">
 <input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadRequest" message="tns:addThread"/>
@@ -31,6 +37,10 @@
 <operation name="retrieveAllThreads">
 <input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllThreadsRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllThreadsRequest" message="tns:retrieveAllThreads"/>
 <output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllThreadsResponse" message="tns:retrieveAllThreadsResponse"/>
+</operation>
+<operation name="retrieveAllMessages">
+<input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllMessagesRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllMessagesRequest" message="tns:retrieveAllMessages"/>
+<output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllMessagesResponse" message="tns:retrieveAllMessagesResponse"/>
 </operation>
 </portType>
 <binding name="ChatServicePortBinding" type="tns:ChatService">
@@ -48,6 +58,15 @@
 </output>
 </operation>
 <operation name="retrieveAllThreads">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="retrieveAllMessages">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

@@ -5,21 +5,25 @@
  */
 package lk.raneesh.csacwk.datastructure;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Raneesh Gomez
  */
 public class ThreadList {
     
+    private int threadId;
     private String threadTitle;
     private String threadCreator;
-    private String threadDate;
+    private String threadDate;    
 
-    public ThreadList(String threadTitle, String threadCreator, String threadDate) {
+    public ThreadList(int threadId, String threadTitle, String threadCreator, String threadDate) {
+        this.threadId = threadId;
         this.threadTitle = threadTitle;
         this.threadCreator = threadCreator;
         this.threadDate = threadDate;
-    }
+    }   
 
     /**
      * @return the threadTitle
@@ -62,4 +66,24 @@ public class ThreadList {
     public void setThreadDate(String threadDate) {
         this.threadDate = threadDate;
     }
+
+    /**
+     * @return the threadId
+     */
+    public int getThreadId() {
+        return threadId;
+    }
+
+    /**
+     * @param threadId the threadId to set
+     */
+    public void setThreadId(int threadId) {
+        this.threadId = threadId;
+    }
+    
+    @Override
+    public String toString() {
+        return String.valueOf(getThreadId());
+    }
+    
 }

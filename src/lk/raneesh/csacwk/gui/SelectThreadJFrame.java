@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import lk.raneesh.csacwk.controllers.ChatController;
+import lk.raneesh.csacwk.datastructure.MessageList;
 import lk.raneesh.csacwk.datastructure.ThreadList;
 import lk.raneesh.csacwk.datastructure.User;
 import lk.raneesh.csacwk.gui.customlist.ThreadPanel;
@@ -21,6 +22,7 @@ import lk.raneesh.csacwk.gui.customlist.ThreadPanel;
 public class SelectThreadJFrame extends javax.swing.JFrame {
 
     private AddThreadJFrame addThread;
+    private EditMessagesJFrame editMessages;
     private LoginJFrame login;
 
     public static DefaultListModel<ThreadList> threadListModel = new DefaultListModel<>();
@@ -29,21 +31,22 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
      * Creates new form LoginJFrame
      */
     public SelectThreadJFrame() {
-        super("DRAGx Chat | Select Thread");
-        initComponents();
+        super("DRAGx Chat | Select Thread");        
+        initComponents(); 
         generateMessageList();
-        retrieveAllThreads();
+        retrieveThreads();
     }
 
     public void generateMessageList() {
         threadJList.setModel(threadListModel);
         threadJList.setCellRenderer(new ThreadPanel());
-    }
+    } 
     
-    public void retrieveAllThreads() {
-        ArrayList<ThreadList> currentThreads = ChatController.retrieveAllThreads();
-        for (int i = 0; i < currentThreads.size(); i++) {
-            threadListModel.addElement(new ThreadList(currentThreads.get(i).getThreadTitle(), currentThreads.get(i).getThreadCreator(), currentThreads.get(i).getThreadDate()));
+    public void retrieveThreads() {
+        ArrayList<ThreadList> currentThreadsList = ChatController.retrieveAllThreads();
+        
+        for (int i = 0; i < currentThreadsList.size(); i++) {
+            threadListModel.addElement(new ThreadList(currentThreadsList.get(i).getThreadId(), currentThreadsList.get(i).getThreadTitle(), currentThreadsList.get(i).getThreadCreator(), currentThreadsList.get(i).getThreadDate()));
         }
     }
 
@@ -180,20 +183,18 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void threadJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_threadJListMouseClicked
-        int index;
+        int threadId = 0;
         JList threadJList = (JList) evt.getSource();
         if (evt.getButton() == MouseEvent.BUTTON1) {
             if (evt.getClickCount() == 2) {
-                //Detecting double click event
-                index = threadJList.locationToIndex(evt.getPoint());
-                System.out.println("Thread " + index + " clicked!");
-            } else if (evt.getClickCount() == 3) {
-                //Detecting triple click event
-                index = threadJList.locationToIndex(evt.getPoint());
-                System.out.println("Thread " + index + " clicked!");
-            }
-        }
-        
+                //Detecting double click event                
+                threadId = Integer.parseInt(threadJList.getSelectedValue().toString());
+                System.out.println("Thread Id: " + threadId);
+                editMessages = new EditMessagesJFrame(threadId);
+                editMessages.setVisible(true);
+                this.setVisible(false);
+            } 
+        }       
     }//GEN-LAST:event_threadJListMouseClicked
 
     /**
