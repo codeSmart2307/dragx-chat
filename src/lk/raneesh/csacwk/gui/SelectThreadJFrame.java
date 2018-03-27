@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import lk.raneesh.csacwk.controllers.ChatController;
-import lk.raneesh.csacwk.datastructure.MessageList;
 import lk.raneesh.csacwk.datastructure.ThreadList;
 import lk.raneesh.csacwk.datastructure.User;
 import lk.raneesh.csacwk.gui.customlist.ThreadPanel;
@@ -24,6 +23,7 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
     private AddThreadJFrame addThread;
     private EditMessagesJFrame editMessages;
     private LoginJFrame login;
+    private static int threadRetrievalCounter = 0;
 
     public static DefaultListModel<ThreadList> threadListModel = new DefaultListModel<>();
 
@@ -34,7 +34,11 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
         super("DRAGx Chat | Select Thread");        
         initComponents(); 
         generateMessageList();
-        retrieveThreads();
+        threadRetrievalCounter++;
+        if (threadRetrievalCounter == 1) {
+            retrieveThreads();
+        }
+        
     }
 
     public void generateMessageList() {
@@ -190,6 +194,7 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
                 //Detecting double click event                
                 threadId = Integer.parseInt(threadJList.getSelectedValue().toString());
                 System.out.println("Thread Id: " + threadId);
+                EditMessagesJFrame.setThreadId(threadId);
                 editMessages = new EditMessagesJFrame(threadId);
                 editMessages.setVisible(true);
                 this.setVisible(false);

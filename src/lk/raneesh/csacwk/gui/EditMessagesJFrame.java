@@ -23,24 +23,19 @@ import lk.raneesh.csacwk.gui.customlist.MessagePanel;
  *
  * @author Raneesh Gomez
  */
-public class EditMessagesJFrame extends javax.swing.JFrame {
+public class EditMessagesJFrame extends javax.swing.JFrame {   
+    
+    private SelectThreadJFrame selectThread;
+    private static int messageRetrievalCounter = 0;
+    private static int threadId;
 
-    /**
-     * @return the threadId
-     */
-    public int getThreadId() {
+    public static int getThreadId() {
         return threadId;
     }
 
-    /**
-     * @param threadId the threadId to set
-     */
-    public void setThreadId(int threadId) {
-        this.threadId = threadId;
+    public static void setThreadId(int threadId) {
+        EditMessagesJFrame.threadId = threadId;
     }
-    
-    private SelectThreadJFrame selectThread;
-    private int threadId;
 
     public static DefaultListModel<MessageList> messageListModel = new DefaultListModel<>();
     
@@ -51,7 +46,8 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         super("DRAGx Chat | Edit Threads");
         initComponents();        
         generateMessageList();
-        setPlaceholder();  
+        setPlaceholder();       
+        retrieveAllMessages();               
         editMessagesHeaderLabel.setText("Edit Messages | " + MessageList.getThreadTitle() + " Thread");
     }
     
@@ -60,7 +56,8 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         this.threadId = threadId;        
         initComponents();        
         generateMessageList();
-        setPlaceholder();  
+        setPlaceholder();       
+        retrieveAllMessages();        
         editMessagesHeaderLabel.setText("Edit Messages | " + MessageList.getThreadTitle() + " Thread");
     }
     
@@ -70,7 +67,8 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
     }   
     
     public void retrieveAllMessages() {
-        ArrayList<MessageList> currentMessagesList = ChatController.retrieveThreadSpecificMessages(threadId);
+        ArrayList<MessageList> currentMessagesList = ChatController.retrieveThreadSpecificMessages(EditMessagesJFrame.getThreadId());
+        System.out.println(threadId);
         
         for (int i = 0; i < currentMessagesList.size(); i++) {
             messageListModel.addElement(new MessageList(currentMessagesList.get(i).getThreadId(), currentMessagesList.get(i).getMessageId(), currentMessagesList.get(i).getMessageBody(), currentMessagesList.get(i).getMessageAuthor(), currentMessagesList.get(i).getMessageDate()));
@@ -228,11 +226,9 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
 
     private void messageAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messageAddButtonActionPerformed
         String currMessage = messageTextField.getText();
-//        boolean isFieldEmpty = ChatFunctionValidation.validateEmptyString(currMessage);
-//        
-//        if (!isFieldEmpty) {
-//           messageListModel.addElement(new MessageList(currMessage, "Raneesh", String.valueOf(new Date())));         
-//        }
+        ArrayList<String> newMessageList = ChatController.createNewMessage(threadId, currMessage);       
+        
+        messageListModel.addElement(new MessageList(Integer.parseInt(newMessageList.get(0)), Integer.parseInt(newMessageList.get(1)), newMessageList.get(2), newMessageList.get(3), newMessageList.get(4)));   
         
         messageTextField.setForeground(Color.GRAY);
         messageTextField.setText("");

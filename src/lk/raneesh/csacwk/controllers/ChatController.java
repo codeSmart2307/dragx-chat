@@ -48,7 +48,7 @@ public class ChatController {
         }
 
         return newThreadList;
-    }
+    }    
 
     public static ArrayList<ThreadList> retrieveAllThreads() {     
         ArrayList<ThreadList> currentThreadsList = new ArrayList<>();
@@ -80,6 +80,32 @@ public class ChatController {
         }
         
         return currentMessagesList;       
+    }
+    
+    public static ArrayList<String> createNewMessage(int threadId, String messageBody) {
+        ArrayList<String> newMessageList = new ArrayList<>();
+
+        String messageAuthor = User.getCurrUser().getNickname();
+        boolean isMessageBodyValid = ChatValidation.validateMessageBody(messageBody);
+        
+        if (isMessageBodyValid) {
+            ChatMessage newMessage = ChatServiceClient.addMessage(threadId, messageBody, messageAuthor);
+            if (newMessage != null) {
+                newMessageList.add(0, String.valueOf(newMessage.getThreadId()));
+                newMessageList.add(1, String.valueOf(newMessage.getMessageId()));
+                newMessageList.add(2, newMessage.getMessageBody());
+                newMessageList.add(3, newMessage.getMessageAuthor());
+                newMessageList.add(4, newMessage.getMessageDateTime());
+            }
+            else {
+                showError("Error in retrieving new message!");
+            }
+
+        } else {
+            showError("Fields cannot be left empty! Please try again.");
+        }
+        
+        return newMessageList;
     }
 
 }

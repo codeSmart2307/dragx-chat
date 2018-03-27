@@ -17,6 +17,12 @@
 <message name="addThreadResponse">
 <part name="parameters" element="tns:addThreadResponse"/>
 </message>
+<message name="addMessage">
+<part name="parameters" element="tns:addMessage"/>
+</message>
+<message name="addMessageResponse">
+<part name="parameters" element="tns:addMessageResponse"/>
+</message>
 <message name="retrieveAllThreads">
 <part name="parameters" element="tns:retrieveAllThreads"/>
 </message>
@@ -34,6 +40,10 @@
 <input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadRequest" message="tns:addThread"/>
 <output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadResponse" message="tns:addThreadResponse"/>
 </operation>
+<operation name="addMessage">
+<input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addMessageRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addMessageRequest" message="tns:addMessage"/>
+<output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addMessageResponse" message="tns:addMessageResponse"/>
+</operation>
 <operation name="retrieveAllThreads">
 <input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllThreadsRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllThreadsRequest" message="tns:retrieveAllThreads"/>
 <output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllThreadsResponse" message="tns:retrieveAllThreadsResponse"/>
@@ -49,6 +59,15 @@
 <wsp:PolicyReference URI="#ChatServicePortBindingPolicy"/>
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="addThread">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="addMessage">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
