@@ -9,8 +9,6 @@ package lk.raneesh.csacwk.gui;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import lk.raneesh.csacwk.controllers.ChatController;
@@ -67,24 +65,23 @@ public class AddThreadJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        addThreadPanel = new javax.swing.JPanel();
+        addThreadHeaderLabel = new javax.swing.JLabel();
         createThreadButton = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
+        threadTitleLabel = new javax.swing.JLabel();
         newThreadTitleText = new javax.swing.JTextField();
         chatHeaderLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(810, 700));
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        addThreadPanel.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Add Thread");
-        jLabel4.setToolTipText("");
+        addThreadHeaderLabel.setBackground(new java.awt.Color(0, 0, 0));
+        addThreadHeaderLabel.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
+        addThreadHeaderLabel.setForeground(new java.awt.Color(255, 255, 255));
+        addThreadHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addThreadHeaderLabel.setText("Add Thread");
+        addThreadHeaderLabel.setToolTipText("");
 
         createThreadButton.setBackground(new java.awt.Color(153, 153, 0));
         createThreadButton.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
@@ -98,12 +95,12 @@ public class AddThreadJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel14.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(153, 153, 0));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("THREAD TITLE");
-        jLabel14.setOpaque(true);
+        threadTitleLabel.setBackground(new java.awt.Color(0, 0, 0));
+        threadTitleLabel.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        threadTitleLabel.setForeground(new java.awt.Color(153, 153, 0));
+        threadTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        threadTitleLabel.setText("THREAD TITLE");
+        threadTitleLabel.setOpaque(true);
 
         newThreadTitleText.setFont(new java.awt.Font("Poppins Light", 0, 14)); // NOI18N
         newThreadTitleText.addActionListener(new java.awt.event.ActionListener() {
@@ -119,38 +116,38 @@ public class AddThreadJFrame extends javax.swing.JFrame {
         chatHeaderLabel.setToolTipText("");
         chatHeaderLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout addThreadPanelLayout = new javax.swing.GroupLayout(addThreadPanel);
+        addThreadPanel.setLayout(addThreadPanelLayout);
+        addThreadPanelLayout.setHorizontalGroup(
+            addThreadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addThreadPanelLayout.createSequentialGroup()
+                .addGroup(addThreadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addThreadPanelLayout.createSequentialGroup()
                         .addGap(72, 72, 72)
                         .addComponent(newThreadTitleText, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(addThreadPanelLayout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addComponent(chatHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(addThreadPanelLayout.createSequentialGroup()
                         .addGap(265, 265, 265)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(addThreadHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addThreadPanelLayout.createSequentialGroup()
                         .addGap(217, 217, 217)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(threadTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addThreadPanelLayout.createSequentialGroup()
                         .addGap(322, 322, 322)
                         .addComponent(createThreadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        addThreadPanelLayout.setVerticalGroup(
+            addThreadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addThreadPanelLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(chatHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addThreadHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(threadTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(newThreadTitleText, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(89, 89, 89)
@@ -162,11 +159,11 @@ public class AddThreadJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(addThreadPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(addThreadPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -256,11 +253,11 @@ public class AddThreadJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addThreadHeaderLabel;
+    private javax.swing.JPanel addThreadPanel;
     private javax.swing.JLabel chatHeaderLabel;
     private javax.swing.JButton createThreadButton;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField newThreadTitleText;
+    private javax.swing.JLabel threadTitleLabel;
     // End of variables declaration//GEN-END:variables
 }

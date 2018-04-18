@@ -12,8 +12,8 @@ import lk.raneesh.csacwk.controllers.UserController;
  */
 public class LoginJFrame extends javax.swing.JFrame {
     
-    RegistrationJFrame registration;
-    SelectThreadJFrame selectThreads;
+    private RegistrationJFrame registration;
+    private SelectThreadJFrame selectThreads;
 
     /**
      * Creates new form LoginJFrame
@@ -88,7 +88,7 @@ public class LoginJFrame extends javax.swing.JFrame {
         loginRegisterBtn = new javax.swing.JButton();
         loginPasswordText = new javax.swing.JPasswordField();
         regQueryTextLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        passwordPromptLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -137,9 +137,9 @@ public class LoginJFrame extends javax.swing.JFrame {
         regQueryTextLabel.setForeground(new java.awt.Color(255, 255, 255));
         regQueryTextLabel.setText("Don't have an account ?");
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setForeground(new java.awt.Color(153, 153, 0));
-        jLabel2.setText("* Enter Password");
+        passwordPromptLabel.setBackground(new java.awt.Color(0, 0, 0));
+        passwordPromptLabel.setForeground(new java.awt.Color(153, 153, 0));
+        passwordPromptLabel.setText("* Enter Password");
 
         javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
         loginPanel.setLayout(loginPanelLayout);
@@ -161,7 +161,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                             .addGroup(loginPanelLayout.createSequentialGroup()
                                 .addComponent(loginPasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(passwordPromptLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(loginIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
@@ -179,7 +179,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginPasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordPromptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
@@ -266,12 +266,12 @@ public class LoginJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel chatHeaderLabel;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton loginBtn;
     private javax.swing.JTextField loginIdText;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JPasswordField loginPasswordText;
     private javax.swing.JButton loginRegisterBtn;
+    private javax.swing.JLabel passwordPromptLabel;
     private javax.swing.JLabel regQueryTextLabel;
     // End of variables declaration//GEN-END:variables
 }

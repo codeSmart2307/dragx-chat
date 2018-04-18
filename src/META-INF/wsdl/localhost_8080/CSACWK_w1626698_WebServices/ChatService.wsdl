@@ -11,17 +11,17 @@
 <xsd:import namespace="http://chatservice.webservice.csacwk.raneesh.lk/" schemaLocation="http://localhost:8080/CSACWK_w1626698_WebServices/ChatService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="addThread">
-<part name="parameters" element="tns:addThread"/>
-</message>
-<message name="addThreadResponse">
-<part name="parameters" element="tns:addThreadResponse"/>
-</message>
 <message name="addMessage">
 <part name="parameters" element="tns:addMessage"/>
 </message>
 <message name="addMessageResponse">
 <part name="parameters" element="tns:addMessageResponse"/>
+</message>
+<message name="addThread">
+<part name="parameters" element="tns:addThread"/>
+</message>
+<message name="addThreadResponse">
+<part name="parameters" element="tns:addThreadResponse"/>
 </message>
 <message name="retrieveAllThreads">
 <part name="parameters" element="tns:retrieveAllThreads"/>
@@ -35,14 +35,20 @@
 <message name="retrieveAllMessagesResponse">
 <part name="parameters" element="tns:retrieveAllMessagesResponse"/>
 </message>
+<message name="retrieveThreadTitle">
+<part name="parameters" element="tns:retrieveThreadTitle"/>
+</message>
+<message name="retrieveThreadTitleResponse">
+<part name="parameters" element="tns:retrieveThreadTitleResponse"/>
+</message>
 <portType name="ChatService">
-<operation name="addThread">
-<input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadRequest" message="tns:addThread"/>
-<output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadResponse" message="tns:addThreadResponse"/>
-</operation>
 <operation name="addMessage">
 <input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addMessageRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addMessageRequest" message="tns:addMessage"/>
 <output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addMessageResponse" message="tns:addMessageResponse"/>
+</operation>
+<operation name="addThread">
+<input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadRequest" message="tns:addThread"/>
+<output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/addThreadResponse" message="tns:addThreadResponse"/>
 </operation>
 <operation name="retrieveAllThreads">
 <input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllThreadsRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllThreadsRequest" message="tns:retrieveAllThreads"/>
@@ -52,13 +58,17 @@
 <input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllMessagesRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllMessagesRequest" message="tns:retrieveAllMessages"/>
 <output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveAllMessagesResponse" message="tns:retrieveAllMessagesResponse"/>
 </operation>
+<operation name="retrieveThreadTitle">
+<input wsaw:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveThreadTitleRequest" wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveThreadTitleRequest" message="tns:retrieveThreadTitle"/>
+<output wsam:Action="http://chatservice.webservice.csacwk.raneesh.lk/ChatService/retrieveThreadTitleResponse" message="tns:retrieveThreadTitleResponse"/>
+</operation>
 </portType>
 <binding name="ChatServicePortBinding" type="tns:ChatService">
 <wsaw:UsingAddressing/>
 <wsp:PolicyReference URI="#ChatServicePortBinding_Wsaw_Addressing_Policy-ChatServicePortBinding_WSAM_Addressing_Policy-ChatServicePortBinding_WSAM_Addressing_Policy"/>
 <wsp:PolicyReference URI="#ChatServicePortBindingPolicy"/>
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="addThread">
+<operation name="addMessage">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -67,7 +77,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="addMessage">
+<operation name="addThread">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -86,6 +96,15 @@
 </output>
 </operation>
 <operation name="retrieveAllMessages">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="retrieveThreadTitle">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

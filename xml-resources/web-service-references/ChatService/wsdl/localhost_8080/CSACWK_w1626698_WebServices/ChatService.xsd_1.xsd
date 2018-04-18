@@ -16,6 +16,22 @@
 
 <xs:element name="retrieveAllThreadsResponse" type="tns:retrieveAllThreadsResponse"/>
 
+<xs:element name="retrieveThreadTitle" type="tns:retrieveThreadTitle"/>
+
+<xs:element name="retrieveThreadTitleResponse" type="tns:retrieveThreadTitleResponse"/>
+
+<xs:complexType name="retrieveThreadTitle">
+<xs:sequence>
+<xs:element name="threadId" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retrieveThreadTitleResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="addMessage">
 <xs:sequence>
 <xs:element name="threadId" type="xs:int"/>

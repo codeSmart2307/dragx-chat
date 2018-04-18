@@ -138,8 +138,8 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         passwordRegText = new javax.swing.JPasswordField();
         reenterPasswordRegText = new javax.swing.JPasswordField();
         chatHeaderLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        confirmPasswordPromptLabel = new javax.swing.JLabel();
+        passwordPromptLabel = new javax.swing.JLabel();
         regQueryTextLabel = new javax.swing.JLabel();
         loginRegisterBtn = new javax.swing.JButton();
 
@@ -180,13 +180,13 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         chatHeaderLabel.setToolTipText("");
         chatHeaderLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setForeground(new java.awt.Color(153, 153, 0));
-        jLabel1.setText("* Confirm Password");
+        confirmPasswordPromptLabel.setBackground(new java.awt.Color(0, 0, 0));
+        confirmPasswordPromptLabel.setForeground(new java.awt.Color(153, 153, 0));
+        confirmPasswordPromptLabel.setText("* Confirm Password");
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setForeground(new java.awt.Color(153, 153, 0));
-        jLabel2.setText("* Enter a Password");
+        passwordPromptLabel.setBackground(new java.awt.Color(0, 0, 0));
+        passwordPromptLabel.setForeground(new java.awt.Color(153, 153, 0));
+        passwordPromptLabel.setText("* Enter a Password");
 
         regQueryTextLabel.setForeground(new java.awt.Color(255, 255, 255));
         regQueryTextLabel.setText("Already have an account?");
@@ -217,8 +217,8 @@ public class RegistrationJFrame extends javax.swing.JFrame {
                         .addComponent(passwordRegText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(passwordPromptLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(confirmPasswordPromptLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registerPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -251,11 +251,11 @@ public class RegistrationJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordRegText, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordPromptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reenterPasswordRegText, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(confirmPasswordPromptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addComponent(registerRegBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
@@ -347,11 +347,11 @@ public class RegistrationJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel chatHeaderLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel confirmPasswordPromptLabel;
     private javax.swing.JTextField loginIdRegText;
     private javax.swing.JButton loginRegisterBtn;
     private javax.swing.JTextField nicknameRegText;
+    private javax.swing.JLabel passwordPromptLabel;
     private javax.swing.JPasswordField passwordRegText;
     private javax.swing.JPasswordField reenterPasswordRegText;
     private javax.swing.JLabel regQueryTextLabel;

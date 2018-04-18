@@ -12,8 +12,7 @@ package lk.raneesh.csacwk.datastructure;
  */
 public class MessageList {  
     
-    private int threadId;
-    private static String threadTitle;
+    private int threadId;    
     private int messageId;
     private String messageBody;
     private String messageAuthor;
@@ -26,20 +25,6 @@ public class MessageList {
         this.messageAuthor = messageAuthor;
         this.messageDate = messageDate;
     }  
-    
-    /**
-     * @return the threadTitle
-     */
-    public static String getThreadTitle() {
-        return threadTitle;
-    }
-
-    /**
-     * @param aThreadTitle the threadTitle to set
-     */
-    public static void setThreadTitle(String aThreadTitle) {
-        threadTitle = aThreadTitle;
-    }
 
     /**
      * @return the messageBody

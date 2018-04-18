@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import lk.raneesh.csacwk.controllers.ChatController;
+import lk.raneesh.csacwk.datastructure.RefreshThreads;
 import lk.raneesh.csacwk.datastructure.ThreadList;
 import lk.raneesh.csacwk.datastructure.User;
 import lk.raneesh.csacwk.gui.customlist.ThreadPanel;
@@ -22,8 +23,9 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
 
     private AddThreadJFrame addThread;
     private EditMessagesJFrame editMessages;
-    private LoginJFrame login;
-    private static int threadRetrievalCounter = 0;
+    private LoginJFrame login;   
+    private RefreshThreads autoRefreshThreads;
+    private Thread threadsRefreshThread;
 
     public static DefaultListModel<ThreadList> threadListModel = new DefaultListModel<>();
 
@@ -31,22 +33,31 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
      * Creates new form LoginJFrame
      */
     public SelectThreadJFrame() {
-        super("DRAGx Chat | Select Thread");        
-        initComponents(); 
-        generateMessageList();
-        threadRetrievalCounter++;
-        if (threadRetrievalCounter == 1) {
-            retrieveThreads();
-        }
-        
+        super("DRAGx Chat | Select Thread");
+        initComponents();
+        generateThreadList();       
+        generateUserGreeting();
+        //retrieveThreads();
+        runAutoRefresh();
     }
 
-    public void generateMessageList() {
+    public void generateThreadList() {
         threadJList.setModel(threadListModel);
         threadJList.setCellRenderer(new ThreadPanel());
-    } 
+    }
+
+    public void generateUserGreeting() {
+        this.userGreetingLabel.setText("Welcome, " + User.getCurrUser().getNickname() + "!");
+    }   
+
+    public void runAutoRefresh() {
+       autoRefreshThreads = new RefreshThreads(); 
+       threadsRefreshThread = new Thread(autoRefreshThreads);
+       threadsRefreshThread.start();
+    }
     
     public void retrieveThreads() {
+        threadListModel.removeAllElements();
         ArrayList<ThreadList> currentThreadsList = ChatController.retrieveAllThreads();
         
         for (int i = 0; i < currentThreadsList.size(); i++) {
@@ -63,23 +74,25 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        selectThreadsPanel = new javax.swing.JPanel();
+        selectThreadHeaderLabel = new javax.swing.JLabel();
         addThreadButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
         chatHeaderLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        selectThreadsScrollPane = new javax.swing.JScrollPane();
         threadJList = new javax.swing.JList<>();
+        refreshButton = new javax.swing.JButton();
+        userGreetingLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        selectThreadsPanel.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel4.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Select Thread");
-        jLabel4.setToolTipText("");
+        selectThreadHeaderLabel.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
+        selectThreadHeaderLabel.setForeground(new java.awt.Color(255, 255, 255));
+        selectThreadHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectThreadHeaderLabel.setText("Select Thread");
+        selectThreadHeaderLabel.setToolTipText("");
 
         addThreadButton.setBackground(new java.awt.Color(153, 153, 0));
         addThreadButton.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
@@ -117,42 +130,64 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
                 threadJListMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(threadJList);
+        selectThreadsScrollPane.setViewportView(threadJList);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(274, 274, 274)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chatHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        refreshButton.setBackground(new java.awt.Color(0, 51, 51));
+        refreshButton.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        refreshButton.setForeground(new java.awt.Color(255, 255, 255));
+        refreshButton.setText("Refresh");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
+        userGreetingLabel.setBackground(new java.awt.Color(0, 0, 0));
+        userGreetingLabel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        userGreetingLabel.setForeground(new java.awt.Color(255, 255, 255));
+        userGreetingLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        userGreetingLabel.setText("Welcome, ");
+
+        javax.swing.GroupLayout selectThreadsPanelLayout = new javax.swing.GroupLayout(selectThreadsPanel);
+        selectThreadsPanel.setLayout(selectThreadsPanelLayout);
+        selectThreadsPanelLayout.setHorizontalGroup(
+            selectThreadsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectThreadsPanelLayout.createSequentialGroup()
+                .addGroup(selectThreadsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(selectThreadsPanelLayout.createSequentialGroup()
                         .addGap(317, 317, 317)
-                        .addComponent(addThreadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(addThreadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(selectThreadsPanelLayout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addGroup(selectThreadsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(selectThreadsPanelLayout.createSequentialGroup()
+                                .addComponent(refreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(22, 22, 22)
+                                .addComponent(selectThreadHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(selectThreadsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(selectThreadsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(userGreetingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(chatHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+        selectThreadsPanelLayout.setVerticalGroup(
+            selectThreadsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectThreadsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(userGreetingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chatHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(selectThreadsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(selectThreadHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(selectThreadsPanelLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(logOutButton)))
+                        .addComponent(logOutButton))
+                    .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                .addComponent(selectThreadsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(addThreadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
@@ -162,11 +197,11 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(selectThreadsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(selectThreadsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -198,9 +233,13 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
                 editMessages = new EditMessagesJFrame(threadId);
                 editMessages.setVisible(true);
                 this.setVisible(false);
-            } 
-        }       
+            }
+        }
     }//GEN-LAST:event_threadJListMouseClicked
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        retrieveThreads();
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,18 +278,20 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SelectThreadJFrame().setVisible(true);
+                new SelectThreadJFrame().setVisible(true);                
             }
-        });
+        });       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addThreadButton;
     private javax.swing.JLabel chatHeaderLabel;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logOutButton;
+    private javax.swing.JButton refreshButton;
+    private javax.swing.JLabel selectThreadHeaderLabel;
+    private javax.swing.JPanel selectThreadsPanel;
+    private javax.swing.JScrollPane selectThreadsScrollPane;
     public javax.swing.JList<ThreadList> threadJList;
+    private javax.swing.JLabel userGreetingLabel;
     // End of variables declaration//GEN-END:variables
 }

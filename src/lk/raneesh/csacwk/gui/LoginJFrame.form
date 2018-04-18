@@ -65,7 +65,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="loginPasswordText" min="-2" pref="553" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" max="32767" attributes="0"/>
+                                  <Component id="passwordPromptLabel" max="32767" attributes="0"/>
                               </Group>
                               <Component id="loginIdText" min="-2" pref="553" max="-2" attributes="0"/>
                           </Group>
@@ -90,7 +90,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="loginPasswordText" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                      <Component id="passwordPromptLabel" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Component id="loginBtn" min="-2" pref="61" max="-2" attributes="0"/>
@@ -200,7 +200,7 @@
             <Property name="text" type="java.lang.String" value="Don&apos;t have an account ?"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="passwordPromptLabel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>

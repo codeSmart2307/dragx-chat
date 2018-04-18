@@ -36,5 +36,13 @@ public class ChatServiceClient {
         lk.raneesh.csacwk.webservice.chatservice.ChatService_Service service = new lk.raneesh.csacwk.webservice.chatservice.ChatService_Service();
         lk.raneesh.csacwk.webservice.chatservice.ChatService port = service.getChatServicePort();
         return port.addMessage(threadId, messageBody, messageAuthor);
-    }      
+    }
+
+    public static String retrieveThreadTitle(int threadId) {
+        lk.raneesh.csacwk.webservice.chatservice.ChatService_Service service = new lk.raneesh.csacwk.webservice.chatservice.ChatService_Service();
+        lk.raneesh.csacwk.webservice.chatservice.ChatService port = service.getChatServicePort();
+        return port.retrieveThreadTitle(threadId);
+    }
+    
+    
 }

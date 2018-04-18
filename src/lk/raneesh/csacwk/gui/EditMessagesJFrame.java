@@ -11,12 +11,10 @@ import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import lk.raneesh.csacwk.controllers.ChatController;
 import lk.raneesh.csacwk.datastructure.MessageList;
-import lk.raneesh.csacwk.datastructure.ThreadList;
-import static lk.raneesh.csacwk.gui.SelectThreadJFrame.threadListModel;
+import lk.raneesh.csacwk.datastructure.RefreshMessages;
+import lk.raneesh.csacwk.datastructure.User;
 import lk.raneesh.csacwk.gui.customlist.MessagePanel;
 
 /**
@@ -25,9 +23,10 @@ import lk.raneesh.csacwk.gui.customlist.MessagePanel;
  */
 public class EditMessagesJFrame extends javax.swing.JFrame {   
     
-    private SelectThreadJFrame selectThread;
-    private static int messageRetrievalCounter = 0;
+    private SelectThreadJFrame selectThread;    
     private static int threadId;
+    private RefreshMessages autoRefreshMessages;
+    private Thread messagesRefreshThread;
 
     public static int getThreadId() {
         return threadId;
@@ -46,9 +45,10 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         super("DRAGx Chat | Edit Threads");
         initComponents();        
         generateMessageList();
-        setPlaceholder();       
-        retrieveAllMessages();               
-        editMessagesHeaderLabel.setText("Edit Messages | " + MessageList.getThreadTitle() + " Thread");
+        setPlaceholder();         
+        //retrieveAllMessages();   
+        generateUserGreeting();
+        runAutoRefresh();
     }
     
     public EditMessagesJFrame(int threadId) {
@@ -56,9 +56,11 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         this.threadId = threadId;        
         initComponents();        
         generateMessageList();
-        setPlaceholder();       
-        retrieveAllMessages();        
-        editMessagesHeaderLabel.setText("Edit Messages | " + MessageList.getThreadTitle() + " Thread");
+        setPlaceholder();         
+        //retrieveAllMessages();
+        getThreadTitle();
+        generateUserGreeting();
+        runAutoRefresh();
     }
     
     public void generateMessageList() {          
@@ -66,13 +68,23 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         messageJList.setCellRenderer(new MessagePanel());
     }   
     
+    public void generateUserGreeting() {
+        this.userGreetingLabel.setText("Welcome, " + User.getCurrUser().getNickname() + "!");
+    }
+    
     public void retrieveAllMessages() {
+        messageListModel.removeAllElements();
         ArrayList<MessageList> currentMessagesList = ChatController.retrieveThreadSpecificMessages(EditMessagesJFrame.getThreadId());
         System.out.println(threadId);
         
         for (int i = 0; i < currentMessagesList.size(); i++) {
             messageListModel.addElement(new MessageList(currentMessagesList.get(i).getThreadId(), currentMessagesList.get(i).getMessageId(), currentMessagesList.get(i).getMessageBody(), currentMessagesList.get(i).getMessageAuthor(), currentMessagesList.get(i).getMessageDate()));
         }
+    }
+    
+    public void getThreadTitle() {
+        String threadTitle = ChatController.getThreadTitle(EditMessagesJFrame.getThreadId());
+        this.threadTitleLabel.setText("| " + threadTitle);
     }
     
     public void setPlaceholder() {
@@ -98,6 +110,12 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void runAutoRefresh() {
+       autoRefreshMessages = new RefreshMessages(); 
+       messagesRefreshThread = new Thread(autoRefreshMessages);
+       messagesRefreshThread.start();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,21 +126,30 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        editMessagesPanel = new javax.swing.JPanel();
+        userGreetingLabel = new javax.swing.JLabel();
         editMessagesHeaderLabel = new javax.swing.JLabel();
         messageTextField = new javax.swing.JTextField();
         messageAddButton = new javax.swing.JButton();
         chatHeaderLabel = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        messageScrollpane = new javax.swing.JScrollPane();
         messageJList = new javax.swing.JList<>();
         backToThreadButton = new javax.swing.JButton();
+        javax.swing.JButton refreshButton = new javax.swing.JButton();
+        threadTitleLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(810, 730));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setPreferredSize(new java.awt.Dimension(810, 700));
+        editMessagesPanel.setBackground(new java.awt.Color(0, 0, 0));
+        editMessagesPanel.setPreferredSize(new java.awt.Dimension(810, 700));
+
+        userGreetingLabel.setBackground(new java.awt.Color(0, 0, 0));
+        userGreetingLabel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        userGreetingLabel.setForeground(new java.awt.Color(255, 255, 255));
+        userGreetingLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        userGreetingLabel.setText("Welcome, ");
 
         editMessagesHeaderLabel.setBackground(new java.awt.Color(255, 255, 255));
         editMessagesHeaderLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
@@ -152,7 +179,7 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         chatHeaderLabel.setToolTipText("");
         chatHeaderLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jScrollPane2.setViewportView(messageJList);
+        messageScrollpane.setViewportView(messageJList);
 
         backToThreadButton.setBackground(new java.awt.Color(0, 51, 51));
         backToThreadButton.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
@@ -166,45 +193,72 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(103, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(backToThreadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(messageAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(335, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(98, 98, 98))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(chatHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(editMessagesHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+        refreshButton.setBackground(new java.awt.Color(0, 51, 51));
+        refreshButton.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        refreshButton.setForeground(new java.awt.Color(255, 255, 255));
+        refreshButton.setText("Refresh");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
+        threadTitleLabel.setBackground(new java.awt.Color(0, 0, 0));
+        threadTitleLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        threadTitleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        threadTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        threadTitleLabel.setText("| Title");
+
+        javax.swing.GroupLayout editMessagesPanelLayout = new javax.swing.GroupLayout(editMessagesPanel);
+        editMessagesPanel.setLayout(editMessagesPanelLayout);
+        editMessagesPanelLayout.setHorizontalGroup(
+            editMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editMessagesPanelLayout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addComponent(backToThreadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(messageAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editMessagesPanelLayout.createSequentialGroup()
+                .addContainerGap(106, Short.MAX_VALUE)
+                .addGroup(editMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editMessagesPanelLayout.createSequentialGroup()
+                        .addGroup(editMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(messageScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(editMessagesPanelLayout.createSequentialGroup()
+                                .addComponent(refreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(editMessagesHeaderLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(threadTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)))
+                        .addGap(98, 98, 98))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editMessagesPanelLayout.createSequentialGroup()
+                        .addGroup(editMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(userGreetingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chatHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(117, 117, 117))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+        editMessagesPanelLayout.setVerticalGroup(
+            editMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editMessagesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(userGreetingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chatHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editMessagesHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(editMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(threadTitleLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                    .addGroup(editMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(editMessagesHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addComponent(messageScrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(editMessagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(messageAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backToThreadButton))
                 .addGap(18, 18, 18))
@@ -214,11 +268,11 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(editMessagesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(editMessagesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -239,6 +293,11 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         selectThread.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backToThreadButtonActionPerformed
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        messageListModel.removeAllElements();
+        retrieveAllMessages();
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
     
     /**
@@ -282,10 +341,12 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
     private javax.swing.JButton backToThreadButton;
     private javax.swing.JLabel chatHeaderLabel;
     private javax.swing.JLabel editMessagesHeaderLabel;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel editMessagesPanel;
     private javax.swing.JButton messageAddButton;
     private javax.swing.JList<MessageList> messageJList;
+    private javax.swing.JScrollPane messageScrollpane;
     private javax.swing.JTextField messageTextField;
+    private javax.swing.JLabel threadTitleLabel;
+    private javax.swing.JLabel userGreetingLabel;
     // End of variables declaration//GEN-END:variables
 }
