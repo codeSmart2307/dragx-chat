@@ -21,7 +21,7 @@ public class UserValidation {
             isRegistrationFieldsFilled = false;
         }
         
-        return false;
+        return isRegistrationFieldsFilled;
     }
     
     public static boolean validateLogin(String username, String password) {

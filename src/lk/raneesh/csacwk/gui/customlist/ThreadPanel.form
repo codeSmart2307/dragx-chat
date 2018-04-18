@@ -52,7 +52,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="threadCreatorListLabel" min="-2" pref="186" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="threadDateListLabel" pref="166" max="32767" attributes="0"/>
+                          <Component id="threadDateListLabel" pref="167" max="32767" attributes="0"/>
                       </Group>
                       <Component id="threadTitleListLabel" max="32767" attributes="0"/>
                   </Group>
@@ -97,7 +97,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="createdByLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Created By:"/>
+            <Property name="text" type="java.lang.String" value="Last Edited:"/>
           </Properties>
         </Component>
       </SubComponents>

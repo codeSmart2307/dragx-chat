@@ -47,7 +47,7 @@ public class ThreadPanel extends javax.swing.JPanel implements ListCellRenderer<
 
         threadDateListLabel.setText("Thread Date");
 
-        createdByLabel.setText("Created By:");
+        createdByLabel.setText("Last Edited:");
 
         javax.swing.GroupLayout threadPanelLayout = new javax.swing.GroupLayout(threadPanel);
         threadPanel.setLayout(threadPanelLayout);
@@ -61,7 +61,7 @@ public class ThreadPanel extends javax.swing.JPanel implements ListCellRenderer<
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(threadCreatorListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(threadDateListLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                        .addComponent(threadDateListLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
                     .addComponent(threadTitleListLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

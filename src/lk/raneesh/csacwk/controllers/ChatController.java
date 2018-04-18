@@ -59,7 +59,7 @@ public class ChatController {
         if (retrievedThreads != null) {
             SelectThreadJFrame.threadListModel.removeAllElements();
             for (int i = 0; i < retrievedThreads.size(); i++) {
-                SelectThreadJFrame.threadListModel.addElement(new ThreadList(retrievedThreads.get(i).getThreadId(), retrievedThreads.get(i).getThreadTitle(), retrievedThreads.get(i).getThreadCreator(), "Last Edited: " + retrievedThreads.get(i).getThreadDateTime()));
+                SelectThreadJFrame.threadListModel.addElement(new ThreadList(retrievedThreads.get(i).getThreadId(), retrievedThreads.get(i).getThreadTitle(), retrievedThreads.get(i).getThreadCreator(), "Last Edited Time: " + retrievedThreads.get(i).getThreadDateTime()));
                 
                 // Kept in case auto refresh does not work and is required for refresh button
                 currentThreadsList.add(new ThreadList(retrievedThreads.get(i).getThreadId(), retrievedThreads.get(i).getThreadTitle(), retrievedThreads.get(i).getThreadCreator(), retrievedThreads.get(i).getThreadDateTime()));
