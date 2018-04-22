@@ -29,6 +29,7 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
     
+    // Sets placeholder text to each field
     public void setPlaceholder() {
         chatHeaderLabel.requestFocus();
         
@@ -287,6 +288,7 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         char[] password = passwordRegText.getText().toCharArray();        
         char[] confirmPassword = reenterPasswordRegText.getText().toCharArray();
         
+        //Sends to web client for validation and if so new user generation
         boolean isRegistrationSuccessful = UserController.registerUser(nickname, username, password, confirmPassword);
         
         nicknameRegText.setText("");
@@ -301,6 +303,7 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_registerRegBtnActionPerformed
 
+    // Opens login page on button click
     private void loginRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginRegisterBtnActionPerformed
         login = new LoginJFrame();
         login.setVisible(true);

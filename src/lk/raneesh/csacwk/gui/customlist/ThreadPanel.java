@@ -102,6 +102,7 @@ public class ThreadPanel extends javax.swing.JPanel implements ListCellRenderer<
 
     @Override
     public Component getListCellRendererComponent(JList<? extends ThreadList> list, ThreadList value, int index, boolean isSelected, boolean cellHasFocus) {
+        // Each swing component is assigned a value when executed through the getters of the respective list class
         this.threadTitleListLabel.setText(value.getThreadTitle());
         this.threadCreatorListLabel.setText(value.getThreadCreator());
         this.threadDateListLabel.setText(value.getThreadDate());

@@ -26,6 +26,7 @@ public class AddThreadJFrame extends javax.swing.JFrame {
         //generateMessageList();
     }   
     
+    // Sets placeholder text to each field
     public void setPlaceholder() {
         newThreadTitleText.setBorder(BorderFactory.createCompoundBorder(
         newThreadTitleText.getBorder(), 
@@ -164,10 +165,11 @@ public class AddThreadJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createThreadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createThreadButtonActionPerformed
-        String threadTitle = newThreadTitleText.getText();
+        String threadTitle = newThreadTitleText.getText(); // Get thread title text
         
-        ArrayList<String> newThreadList = ChatController.createNewThread(threadTitle);       
+        ArrayList<String> newThreadList = ChatController.createNewThread(threadTitle); // Passes thread title as parameter to the web client       
         
+        // Gets thread details after being saved to the database
         SelectThreadJFrame.threadListModel.add(0, new ThreadList(Integer.parseInt(newThreadList.get(0)), newThreadList.get(1), newThreadList.get(2), newThreadList.get(3)));   
         
         newThreadTitleText.setForeground(Color.GRAY);

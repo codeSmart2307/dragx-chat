@@ -10,6 +10,7 @@ public class ChatValidation {
         boolean isThreadTitleFieldFilled = false;
 
         if (threadTitle.length() <= 300) {
+            // If the fields are not empty or do not contain the placeholder text
             if (!threadTitle.equals("") && !threadTitle.equals("Enter Thread Title Here...")) {
                 isThreadTitleFieldFilled = true;
             } else {
@@ -27,6 +28,7 @@ public class ChatValidation {
         boolean isMessageBodyFieldFilled = false;
         
         if (messageBody.length() <= 300) {
+            // If the fields are not empty or do not contain the placeholder text
             if (!messageBody.equals("") && !messageBody.equals("Enter Message Here...")) {
                 isMessageBodyFieldFilled = true;
             } else {

@@ -31,6 +31,7 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         EditMessagesJFrame.threadId = threadId;
     }
 
+    // Default List Model contains the list of messages to be displayed in the custom list layout
     public static DefaultListModel<MessageList> messageListModel = new DefaultListModel<>();
     
     /**
@@ -58,15 +59,18 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         runAutoRefresh();
     }
     
+    // Calls the default list model and sets the renderer to the custom layout
     public void generateMessageList() {          
         messageJList.setModel(messageListModel);
         messageJList.setCellRenderer(new MessagePanel());
     }   
     
+    // Generates a user greeting on login using the static user object
     public void generateUserGreeting() {
         this.userGreetingLabel.setText("Welcome, " + User.getCurrUser().getNickname() + "!");
     }
     
+    // Retrieves all messages belonging to a specific thread
     public void retrieveAllMessages() {
         messageListModel.removeAllElements();
         ArrayList<MessageList> currentMessagesList = ChatController.retrieveThreadSpecificMessages(EditMessagesJFrame.getThreadId());
@@ -77,11 +81,13 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         }
     }
     
+    // Gets the title of the thread that the set of messages belong to
     public void getThreadTitle() {
         String threadTitle = ChatController.getThreadTitle(EditMessagesJFrame.getThreadId());
         this.threadTitleLabel.setText("| " + threadTitle);
     }
     
+    // Sets placeholder text to each field
     public void setPlaceholder() {
         messageTextField.setBorder(BorderFactory.createCompoundBorder(
         messageTextField.getBorder(), 
@@ -106,6 +112,7 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
         });
     }
     
+    // Initializes the runnable class and passes it as a parameter to a thread to auto refresh messages
     public void runAutoRefresh() {
        autoRefreshMessages = new RefreshMessages(); 
        messagesRefreshThread = new Thread(autoRefreshMessages);
@@ -274,9 +281,10 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void messageAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messageAddButtonActionPerformed
-        String currMessage = messageTextField.getText();
-        ArrayList<String> newMessageList = ChatController.createNewMessage(threadId, currMessage);       
+        String currMessage = messageTextField.getText(); // Gets the new message body
+        ArrayList<String> newMessageList = ChatController.createNewMessage(threadId, currMessage);// Sends message body to web client       
         
+        // Retrieves new message body saved in the database for display
         messageListModel.addElement(new MessageList(Integer.parseInt(newMessageList.get(0)), Integer.parseInt(newMessageList.get(1)), newMessageList.get(2), newMessageList.get(3), newMessageList.get(4)));   
         
         messageTextField.setForeground(Color.GRAY);
@@ -284,11 +292,12 @@ public class EditMessagesJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_messageAddButtonActionPerformed
 
     private void backToThreadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToThreadButtonActionPerformed
-        selectThread = new SelectThreadJFrame();
+        selectThread = new SelectThreadJFrame(); // Opens select threads page
         selectThread.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backToThreadButtonActionPerformed
 
+    // Removes all elements from default list model and reinitializes it with updated elements
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         messageListModel.removeAllElements();
         retrieveAllMessages();

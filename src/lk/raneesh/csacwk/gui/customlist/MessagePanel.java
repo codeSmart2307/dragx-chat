@@ -102,6 +102,7 @@ public class MessagePanel extends javax.swing.JPanel implements ListCellRenderer
 
     @Override
     public Component getListCellRendererComponent(JList<? extends MessageList> list, MessageList value, int index, boolean isSelected, boolean cellHasFocus) {
+        // Each swing component is assigned a value when executed through the getters of the respective list class
         this.messageTitleListLabel.setText(value.getMessageBody());
         this.messageAuthorListLabel.setText(value.getMessageAuthor());
         this.messageDateListLabel.setText(String.valueOf(value.getMessageDate()));

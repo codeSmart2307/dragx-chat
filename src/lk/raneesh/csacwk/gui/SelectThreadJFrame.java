@@ -22,6 +22,7 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
     private RefreshThreads autoRefreshThreads;
     private Thread threadsRefreshThread;
 
+    // Default List Model contains the list of threads to be displayed in the custom list layout
     public static DefaultListModel<ThreadList> threadListModel = new DefaultListModel<>();
 
     /**
@@ -36,21 +37,25 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
         runAutoRefresh();
     }
 
+     // Calls the default list model and sets the renderer to the custom layout
     public void generateThreadList() {
         threadJList.setModel(threadListModel);
         threadJList.setCellRenderer(new ThreadPanel());
     }
 
+    // Generates a user greeting on login using the static user object
     public void generateUserGreeting() {
         this.userGreetingLabel.setText("Welcome, " + User.getCurrUser().getNickname() + "!");
     }   
 
+    // Initializes the runnable class and passes it as a parameter to a thread to auto refresh messages
     public void runAutoRefresh() {
        autoRefreshThreads = new RefreshThreads(); 
        threadsRefreshThread = new Thread(autoRefreshThreads);
        threadsRefreshThread.start();
     }
     
+    // Retrieves all threads
     public void retrieveThreads() {
         threadListModel.removeAllElements();
         ArrayList<ThreadList> currentThreadsList = ChatController.retrieveAllThreads();
@@ -232,6 +237,7 @@ public class SelectThreadJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_threadJListMouseClicked
 
+    // Removes all elements from default list model and reinitializes it with updated elements
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         retrieveThreads();
     }//GEN-LAST:event_refreshButtonActionPerformed

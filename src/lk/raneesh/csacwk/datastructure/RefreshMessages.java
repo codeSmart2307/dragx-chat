@@ -16,6 +16,7 @@ public class RefreshMessages implements Runnable {
     public void run() {
         try {
             while (!Thread.interrupted()) {
+                // Refreshes messages every 900ms in a new thread seperate to the application thread
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {

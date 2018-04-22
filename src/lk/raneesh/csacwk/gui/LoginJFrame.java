@@ -24,6 +24,7 @@ public class LoginJFrame extends javax.swing.JFrame {
         setPlaceholder();
     }
     
+    // Sets placeholder text to each field
     public void setPlaceholder() {
         chatHeaderLabel.requestFocus();
         
@@ -214,6 +215,7 @@ public class LoginJFrame extends javax.swing.JFrame {
         String username = loginIdText.getText();
         char[] password = loginPasswordText.getText().toCharArray(); 
         
+        // Sends to web client for validation and if so logging in of user
         boolean isLoginSuccessful = UserController.loginUser(username, password);
         
         loginIdText.setText("");
