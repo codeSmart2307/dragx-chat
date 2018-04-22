@@ -1,8 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File Name: ThreadPanel.java
  */
+
 package lk.raneesh.csacwk.gui.customlist;
 
 import java.awt.Component;
@@ -10,10 +9,6 @@ import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import lk.raneesh.csacwk.datastructure.ThreadList;
 
-/**
- *
- * @author Raneesh Gomez
- */
 public class ThreadPanel extends javax.swing.JPanel implements ListCellRenderer<ThreadList> {
 
     /**

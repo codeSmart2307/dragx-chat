@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File Name: MessageList.java
  */
+
 package lk.raneesh.csacwk.datastructure;
 
-
-/**
- *
- * @author Raneesh Gomez
- */
 public class MessageList {  
     
     private int threadId;    
@@ -94,6 +88,5 @@ public class MessageList {
      */
     public void setThreadId(int threadId) {
         this.threadId = threadId;
-    }
-    
+    }    
 }

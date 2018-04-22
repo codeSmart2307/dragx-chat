@@ -1,8 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Author: Raneesh Gomez
+ * IIT Student ID: 2016087
+ * UoW ID: 16266986
+ * Client Server Architecture
+ * Coursework: SOAP Web Services based Java Chat Application
+ * File Name: ChatController.java
  */
+
 package lk.raneesh.csacwk.controllers;
 
 import java.util.ArrayList;
@@ -19,12 +23,10 @@ import lk.raneesh.csacwk.webservice.chatservice.ChatMessage;
 import lk.raneesh.csacwk.webservice.chatservice.ChatThread;
 import lk.raneesh.csacwk.webserviceclient.ChatServiceClient;
 
-/**
- *
- * @author Raneesh Gomez
- */
+
 public class ChatController {
 
+    // Method to create a new thread
     public static ArrayList<String> createNewThread(String threadTitle) {
 
         ArrayList<String> newThreadList = new ArrayList<>();
@@ -32,7 +34,7 @@ public class ChatController {
         String threadCreator = User.getCurrUser().getNickname();
         boolean isThreadTitleValid = ChatValidation.validateThreadTitle(threadTitle);
 
-
+        // Validating if the thread title meets the requirements to be stored in the database
         if (isThreadTitleValid) {
             ChatThread newThread = ChatServiceClient.addThread(threadTitle, threadCreator);
             if (newThread != null) {
@@ -52,10 +54,12 @@ public class ChatController {
         return newThreadList;
     }    
 
+    // Method to retrieve all created threads
     public static ArrayList<ThreadList> retrieveAllThreads() {     
         ArrayList<ThreadList> currentThreadsList = new ArrayList<>();
         List<ChatThread> retrievedThreads = ChatServiceClient.retrieveAllThreads();
         
+        // If there are no thread objects retrieved
         if (retrievedThreads != null) {
             SelectThreadJFrame.threadListModel.removeAllElements();
             for (int i = 0; i < retrievedThreads.size(); i++) {
@@ -72,12 +76,14 @@ public class ChatController {
         return currentThreadsList;
     }
     
+    // Method to retrieve the current thread's title
     public static String getThreadTitle(int threadId) {
         String threadTitle = ChatServiceClient.retrieveThreadTitle(threadId);       
         
         return threadTitle;
     }
     
+    // Method to retrieve the messages belonging to a specific thread
     public static ArrayList<MessageList> retrieveThreadSpecificMessages(int threadId) {   
         ArrayList<MessageList> currentMessagesList = new ArrayList<>();
         List<ChatMessage> retrievedMessages = ChatServiceClient.retrieveAllMessages(threadId);       
@@ -98,6 +104,7 @@ public class ChatController {
         return currentMessagesList;       
     }
     
+    // Method to create a new message
     public static ArrayList<String> createNewMessage(int threadId, String messageBody) {
         ArrayList<String> newMessageList = new ArrayList<>();
 
@@ -123,5 +130,4 @@ public class ChatController {
         
         return newMessageList;
     }
-
 }

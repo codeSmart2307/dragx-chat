@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File Name: ThreadList.java
  */
+
 package lk.raneesh.csacwk.datastructure;
 
-import java.util.ArrayList;
-
-/**
- *
- * @author Raneesh Gomez
- */
 public class ThreadList {
     
     private int threadId;
@@ -84,6 +77,5 @@ public class ThreadList {
     @Override
     public String toString() {
         return String.valueOf(getThreadId());
-    }
-    
+    }    
 }

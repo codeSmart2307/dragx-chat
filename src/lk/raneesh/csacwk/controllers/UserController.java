@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lk.raneesh.csacwk.controllers;
 
 import javax.swing.JOptionPane;
@@ -10,14 +5,11 @@ import lk.raneesh.csacwk.datastructure.User;
 import lk.raneesh.csacwk.utility.UserValidation;
 import lk.raneesh.csacwk.webserviceclient.UserServiceClient;
 
-/**
- *
- * @author Raneesh Gomez
- */
 public class UserController {
 
     private static User currUser;
 
+    // Method to register a new user to the application
     public static boolean registerUser(String nickname, String username, char[] password, char[] confirmPassword) {
         boolean isRegistrationSuccessful = false;
         String registrationStatus = "";
@@ -27,6 +19,7 @@ public class UserController {
 
         boolean isRegistrationFieldsFilled = UserValidation.validateRegistration(nickname, username, passwordString, confirmPasswordString);
 
+        // Validation for fields filled
         if (isRegistrationFieldsFilled) {
             registrationStatus = UserServiceClient.register(nickname, username, passwordString, confirmPasswordString);
 
@@ -44,12 +37,14 @@ public class UserController {
         return isRegistrationSuccessful;
     }
 
+    // Method to log a user into the application
     public static boolean loginUser(String username, char[] password) {
         boolean isLoginSuccessful = false;
         String passwordString = String.valueOf(password);
 
         boolean isLoginFieldsFilled = UserValidation.validateLogin(username, passwordString);
 
+        // Validation for fields filled
         if (isLoginFieldsFilled) {
             String loginStatus = UserServiceClient.login(username, passwordString);
             String[] statusArr = loginStatus.split("&");
@@ -74,12 +69,13 @@ public class UserController {
 
     }
 
+    // Method to display a JOptionPane to display error messages
     public static void showError(String errorMessage) {
         new JOptionPane().showMessageDialog(null, errorMessage, "Error!", JOptionPane.ERROR_MESSAGE);
     }
 
+    // Method to display a JOptionPane to display success messages
     public static void showSuccess(String successMessage) {
         new JOptionPane().showMessageDialog(null, successMessage, "Success!", JOptionPane.INFORMATION_MESSAGE);
     }
-
 }

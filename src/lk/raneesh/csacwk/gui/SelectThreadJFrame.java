@@ -1,8 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File Name: SelectThreadJFrame.java
  */
+
 package lk.raneesh.csacwk.gui;
 
 import java.awt.event.MouseEvent;
@@ -15,10 +14,6 @@ import lk.raneesh.csacwk.datastructure.ThreadList;
 import lk.raneesh.csacwk.datastructure.User;
 import lk.raneesh.csacwk.gui.customlist.ThreadPanel;
 
-/**
- *
- * @author Gab
- */
 public class SelectThreadJFrame extends javax.swing.JFrame {
 
     private AddThreadJFrame addThread;

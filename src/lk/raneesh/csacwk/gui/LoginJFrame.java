@@ -1,3 +1,7 @@
+/**
+ * File Name: LoginJFrame.java
+ */
+
 package lk.raneesh.csacwk.gui;
 
 import java.awt.Color;
@@ -6,10 +10,6 @@ import java.awt.event.FocusListener;
 import javax.swing.BorderFactory;
 import lk.raneesh.csacwk.controllers.UserController;
 
-/**
- *
- * @author Raneesh Gomez
- */
 public class LoginJFrame extends javax.swing.JFrame {
     
     private RegistrationJFrame registration;

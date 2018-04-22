@@ -1,3 +1,7 @@
+/**
+ * File Name: RefreshMessages.java
+ */
+
 package lk.raneesh.csacwk.datastructure;
 
 import java.util.logging.Level;
@@ -6,10 +10,6 @@ import javax.swing.SwingUtilities;
 import lk.raneesh.csacwk.controllers.ChatController;
 import lk.raneesh.csacwk.gui.EditMessagesJFrame;
 
-/**
- *
- * @author Raneesh Gomez
- */
 public class RefreshMessages implements Runnable {    
 
     @Override
@@ -28,5 +28,4 @@ public class RefreshMessages implements Runnable {
             Logger.getLogger(RefreshMessages.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

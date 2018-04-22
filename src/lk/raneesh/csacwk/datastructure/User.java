@@ -1,13 +1,12 @@
+/**
+ * File Name: User.java
+ */
+
 package lk.raneesh.csacwk.datastructure;
 
-/**
- *
- * @author 2016087
- */
 public class User {
 
     private static User currUser;
-
     
     private String loginId;
     private char[] password;
